@@ -12,23 +12,27 @@ class SavedSiteListViewController: UIViewController {
     @IBOutlet weak var siteListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
         siteListTableView.delegate = self
         siteListTableView.dataSource = self
-        configureNavButtons()
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        configureNavButtons()
+        
     }
-    func configureNavButtons(){
-        self.navigationController?.navigationBar.barTintColor = UIColor.red
-        self.navigationController?.navigationBar.tintColor = UIColor.green
-        self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title:"Add", style: .plain, target: self, action: #selector(navigateToAddSitePage))
+    func configureNavBar(){
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        
+        let testUIBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.navigateToAddSitePage))
+                self.navigationItem.rightBarButtonItem  = testUIBarButtonItem
     }
     @objc func navigateToAddSitePage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddSiteVC") as! AddSiteViewController
-        self.present(nextViewController, animated:true, completion:nil)
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
 extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
