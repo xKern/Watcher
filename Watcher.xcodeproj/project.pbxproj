@@ -17,6 +17,7 @@
 		4689107A2681DAFE00499F72 /* WatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910792681DAFE00499F72 /* WatcherUITests.swift */; };
 		4689108E2681DD1000499F72 /* SavedSiteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689108D2681DD1000499F72 /* SavedSiteListViewController.swift */; };
 		468910932681E5A700499F72 /* SiteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910922681E5A700499F72 /* SiteListCell.swift */; };
+		468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910972681F39C00499F72 /* AddSiteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		4689107B2681DAFE00499F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4689108D2681DD1000499F72 /* SavedSiteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSiteListViewController.swift; sourceTree = "<group>"; };
 		468910922681E5A700499F72 /* SiteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteListCell.swift; sourceTree = "<group>"; };
+		468910972681F39C00499F72 /* AddSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				468910542681DAA400499F72 /* AppDelegate.swift */,
 				468910562681DAA400499F72 /* SceneDelegate.swift */,
 				4689108D2681DD1000499F72 /* SavedSiteListViewController.swift */,
+				468910972681F39C00499F72 /* AddSiteViewController.swift */,
 				468910922681E5A700499F72 /* SiteListCell.swift */,
 				4689105A2681DAA600499F72 /* Main.storyboard */,
 				468910602681DAFC00499F72 /* Assets.xcassets */,
@@ -267,6 +270,7 @@
 				468910552681DAA400499F72 /* AppDelegate.swift in Sources */,
 				468910932681E5A700499F72 /* SiteListCell.swift in Sources */,
 				4689108E2681DD1000499F72 /* SavedSiteListViewController.swift in Sources */,
+				468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */,
 				4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */,
 				468910572681DAA400499F72 /* SceneDelegate.swift in Sources */,
 			);

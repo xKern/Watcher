@@ -14,6 +14,21 @@ class SavedSiteListViewController: UIViewController {
         super.viewDidLoad()
         siteListTableView.delegate = self
         siteListTableView.dataSource = self
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        configureNavButtons()
+    }
+    func configureNavButtons(){
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title:"Add", style: .plain, target: self, action: #selector(navigateToAddSitePage))
+    }
+    @objc func navigateToAddSitePage(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddSiteVC") as! AddSiteViewController
+        self.present(nextViewController, animated:true, completion:nil)
     }
 }
 extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
@@ -24,5 +39,8 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let siteCell = tableView.dequeueReusableCell(withIdentifier: "SiteCell")  as! SiteListCell
         return siteCell
-    }    
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
 }
