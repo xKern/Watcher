@@ -14,15 +14,15 @@ class SavedSiteListViewController: UIViewController {
         super.viewDidLoad()
         siteListTableView.delegate = self
         siteListTableView.dataSource = self
-        
+        configureNavButtons()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         configureNavButtons()
     }
     func configureNavButtons(){
-        self.navigationController?.navigationBar.barTintColor = UIColor.clear
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.barTintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = UIColor.green
         self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title:"Add", style: .plain, target: self, action: #selector(navigateToAddSitePage))
     }
     @objc func navigateToAddSitePage(){
