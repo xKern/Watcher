@@ -26,6 +26,7 @@ class AddSiteViewController: UIViewController {
         webView.allowsBackForwardNavigationGestures = true
     }
     @IBAction func saveSiteButtonPressed(_ sender: Any) {
+        addToCoreData(siteName: "Apple", siteAddress: "https://www.apple.com/in", lastUpdated: "10-10-10", image: "tt.png")
     }
 }
 

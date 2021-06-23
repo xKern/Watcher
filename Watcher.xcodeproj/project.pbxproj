@@ -20,6 +20,7 @@
 		468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910972681F39C00499F72 /* AddSiteViewController.swift */; };
 		468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910A226820BCD00499F72 /* CoreDataHelper.swift */; };
 		468910A82682162600499F72 /* tt.png in Resources */ = {isa = PBXBuildFile; fileRef = 468910A72682162600499F72 /* tt.png */; };
+		4694982B2682D67C000B2273 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		468910972681F39C00499F72 /* AddSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 		468910A226820BCD00499F72 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		468910A72682162600499F72 /* tt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt.png; sourceTree = "<group>"; };
+		4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				4689108D2681DD1000499F72 /* SavedSiteListViewController.swift */,
 				468910972681F39C00499F72 /* AddSiteViewController.swift */,
 				468910A226820BCD00499F72 /* CoreDataHelper.swift */,
+				4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */,
 				468910922681E5A700499F72 /* SiteListCell.swift */,
 				4689105A2681DAA600499F72 /* Main.storyboard */,
 				468910602681DAFC00499F72 /* Assets.xcassets */,
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4694982B2682D67C000B2273 /* ViewControllerExtensions.swift in Sources */,
 				468910552681DAA400499F72 /* AppDelegate.swift in Sources */,
 				468910932681E5A700499F72 /* SiteListCell.swift in Sources */,
 				4689108E2681DD1000499F72 /* SavedSiteListViewController.swift in Sources */,
@@ -458,6 +462,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Watcher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -476,6 +481,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Watcher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
