@@ -149,51 +149,55 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPC-bg-uax">
-                                        <rect key="frame" x="15" y="0.0" width="384" height="30"/>
+                                        <rect key="frame" x="15" y="10" width="384" height="35"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BO5-gt-DDA">
-                                                <rect key="frame" x="8" y="2" width="333" height="26"/>
+                                                <rect key="frame" x="12" y="2" width="324" height="31"/>
+                                                <color key="textColor" red="0.93333774810000003" green="0.94336253400000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQS-1n-kUL">
-                                                <rect key="frame" x="349" y="2" width="25" height="25"/>
+                                                <rect key="frame" x="344" y="2" width="30" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="B1h-5u-PPZ"/>
-                                                    <constraint firstAttribute="width" constant="25" id="qo3-Qa-Fht"/>
+                                                    <constraint firstAttribute="width" constant="30" id="qo3-Qa-Fht"/>
                                                 </constraints>
-                                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button" image="clear" catalog="system"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="clear" catalog="system"/>
+                                                <connections>
+                                                    <action selector="didTapClearButton:" destination="Du7-Km-GAK" eventType="touchUpInside" id="zly-vd-HAI"/>
+                                                </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.2506920695" green="0.25073465700000003" blue="0.2506862581" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="BO5-gt-DDA" secondAttribute="bottom" constant="2" id="36C-gJ-0em"/>
                                             <constraint firstItem="BO5-gt-DDA" firstAttribute="top" secondItem="tPC-bg-uax" secondAttribute="top" constant="2" id="JL0-wx-nzf"/>
                                             <constraint firstItem="NQS-1n-kUL" firstAttribute="top" secondItem="tPC-bg-uax" secondAttribute="top" constant="2" id="NBF-EG-iPh"/>
                                             <constraint firstItem="NQS-1n-kUL" firstAttribute="leading" secondItem="BO5-gt-DDA" secondAttribute="trailing" constant="8" id="Qhg-GC-Je1"/>
                                             <constraint firstAttribute="bottom" secondItem="NQS-1n-kUL" secondAttribute="bottom" constant="3" id="RLL-Pm-PcX"/>
-                                            <constraint firstItem="BO5-gt-DDA" firstAttribute="leading" secondItem="tPC-bg-uax" secondAttribute="leading" constant="8" id="g8Z-Mb-osD"/>
+                                            <constraint firstItem="BO5-gt-DDA" firstAttribute="leading" secondItem="tPC-bg-uax" secondAttribute="leading" constant="12" id="g8Z-Mb-osD"/>
                                             <constraint firstAttribute="trailing" secondItem="NQS-1n-kUL" secondAttribute="trailing" constant="10" id="pnc-br-CNd"/>
-                                            <constraint firstAttribute="height" constant="30" id="s4K-pV-fwD"/>
+                                            <constraint firstAttribute="height" constant="35" id="s4K-pV-fwD"/>
                                         </constraints>
                                     </view>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ppz-j3-jew">
-                                        <rect key="frame" x="15" y="38" width="384" height="780"/>
+                                        <rect key="frame" x="15" y="53" width="384" height="765"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-oD-S82">
-                                        <rect key="frame" x="0.0" y="758" width="414" height="94"/>
+                                        <rect key="frame" x="0.0" y="782" width="414" height="70"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nbc-9z-KKt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQA-h3-nrF">
-                                                    <rect key="frame" x="144.5" y="32" width="125" height="30"/>
+                                                    <rect key="frame" x="144.5" y="20" width="125" height="30"/>
                                                     <color key="backgroundColor" red="0.0023197096310000002" green="0.63351756329999998" blue="0.99767357109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Efw-fK-dt1"/>
@@ -213,9 +217,9 @@
                                             </constraints>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="94" id="2bK-YT-gIa"/>
+                                            <constraint firstAttribute="height" constant="70" id="2bK-YT-gIa"/>
                                         </constraints>
-                                        <blurEffect style="light"/>
+                                        <blurEffect style="dark"/>
                                     </visualEffectView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -229,7 +233,7 @@
                                     <constraint firstAttribute="trailing" secondItem="tPC-bg-uax" secondAttribute="trailing" constant="15" id="i8n-xw-p9a"/>
                                     <constraint firstItem="tPC-bg-uax" firstAttribute="leading" secondItem="D83-wb-K3D" secondAttribute="leading" constant="15" id="iXJ-Yl-Wo4"/>
                                     <constraint firstAttribute="trailing" secondItem="lNS-oD-S82" secondAttribute="trailing" id="uBh-8T-OG0"/>
-                                    <constraint firstItem="tPC-bg-uax" firstAttribute="top" secondItem="D83-wb-K3D" secondAttribute="top" id="vGV-40-qvq"/>
+                                    <constraint firstItem="tPC-bg-uax" firstAttribute="top" secondItem="D83-wb-K3D" secondAttribute="top" constant="10" id="vGV-40-qvq"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -244,6 +248,7 @@
                     </view>
                     <connections>
                         <outlet property="addWebsiteButton" destination="hQA-h3-nrF" id="hoe-ve-1YG"/>
+                        <outlet property="customClearButton" destination="NQS-1n-kUL" id="5yr-U0-kBt"/>
                         <outlet property="searchFieldBg" destination="tPC-bg-uax" id="6KL-hb-96i"/>
                         <outlet property="searchTextField" destination="BO5-gt-DDA" id="1yc-bY-PFn"/>
                         <outlet property="webView" destination="Ppz-j3-jew" id="jkb-ZJ-ySK"/>

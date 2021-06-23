@@ -27,14 +27,15 @@ class SavedSiteListViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        
         let testUIBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.navigateToAddSitePage))
                 self.navigationItem.rightBarButtonItem  = testUIBarButtonItem
     }
     @objc func navigateToAddSitePage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddSiteVC") as! AddSiteViewController
-        navigationController?.pushViewController(nextViewController, animated: true)
+       // navigationController?.pushViewController(nextViewController, animated: true)
+        let addNavigationController = UINavigationController(rootViewController: nextViewController)
+        present(addNavigationController, animated: true, completion: nil)
     }
 }
 extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
@@ -48,7 +49,6 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
         siteCell.siteAddressLabel.text = site.value(forKey: kSiteAddress) as? String
         siteCell.siteNameLabel.text = site.value(forKey: kSiteName) as? String
         siteCell.siteChangesLabel.text = site.value(forKey: kSiteLastUpdated) as? String
-//        siteCell.siteAddressLabel.text = site.value(forKey: kSiteAddress) as? String
         
         return siteCell
     }
