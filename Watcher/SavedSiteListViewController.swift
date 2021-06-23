@@ -32,7 +32,8 @@ class SavedSiteListViewController: UIViewController {
     @objc func navigateToAddSitePage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddSiteVC") as! AddSiteViewController
-        navigationController?.pushViewController(nextViewController, animated: true)
+        let addNavigationController = UINavigationController(rootViewController: nextViewController)
+        present(addNavigationController, animated: true, completion: nil)
     }
 }
 extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
