@@ -20,11 +20,13 @@ class AddSiteViewController: UIViewController {
         configureNavBarItems()
         searchTextField.keyboardType = .URL
         searchFieldBg.layer.cornerRadius = 16
-        let url = URL(string: "https://www.apple.com/in")!
+        let url = URL(string: "https://ajio.com/")!
         loadWebView(url: url)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(onReturn), for: .editingDidEndOnExit)
         if searchTextField.isEditing {
@@ -35,6 +37,7 @@ class AddSiteViewController: UIViewController {
         }
     }
     func configureNavBarItems(){
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
@@ -55,7 +58,8 @@ class AddSiteViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func saveSiteButtonPressed(_ sender: Any) {
-        addToCoreData(siteName: "Apple", siteAddress: "https://www.apple.com/in", lastUpdated: "10-10-10", image: "tt.png")
+        //Add validation
+        addToCoreData(siteName: "Apple", siteAddress: searchTextField.text!, lastUpdated: "10-10-10", image: "tt.png")
     }
     @IBAction func didTapClearButton(_ sender: Any) {
         searchTextField.text = ""
@@ -71,6 +75,28 @@ extension AddSiteViewController:UITextFieldDelegate{
         customClearButton.isHidden = true
     }
 }
-extension AddSiteViewController:WKNavigationDelegate{
-    
+extension AddSiteViewController:WKNavigationDelegate, WKUIDelegate{
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("*****didcommit called****")
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("*****did finish called****")
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print("*****did fail called****/n\(error.localizedDescription)")
+    }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print("*****did fail prov. navigation called****/n\(error.localizedDescription)")
+    }
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        print("*****did terminate called****")
+    }
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
+     {
+       let response = navigationResponse.response as? HTTPURLResponse
+           decisionHandler(.allow)
+       // print("***LastModified****\(response?.allHeaderFields["Last-Modified"])")
+        print("***LastModified****\(response?.allHeaderFields)")
+    }
 }
+//https://xkern.net
