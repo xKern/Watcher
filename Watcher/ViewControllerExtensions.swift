@@ -27,7 +27,6 @@ extension UIViewController{
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
             return false
         }
-        print("sfgasgfafg\(directory.appendingPathComponent("\(filename).png"))")
         do {
             try data.write(to: directory.appendingPathComponent("\(filename).png")!)
             
