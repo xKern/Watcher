@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		468910552681DAA400499F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910542681DAA400499F72 /* AppDelegate.swift */; };
-		468910572681DAA400499F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910562681DAA400499F72 /* SceneDelegate.swift */; };
 		4689105C2681DAA600499F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4689105A2681DAA600499F72 /* Main.storyboard */; };
 		4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4689105D2681DAA600499F72 /* Watcher.xcdatamodeld */; };
 		468910612681DAFC00499F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 468910602681DAFC00499F72 /* Assets.xcassets */; };
@@ -43,7 +42,6 @@
 /* Begin PBXFileReference section */
 		468910512681DAA300499F72 /* Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		468910542681DAA400499F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		468910562681DAA400499F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4689105B2681DAA600499F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4689105E2681DAA600499F72 /* Watcher.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Watcher.xcdatamodel; sourceTree = "<group>"; };
 		468910602681DAFC00499F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 			children = (
 				468910A72682162600499F72 /* tt.png */,
 				468910542681DAA400499F72 /* AppDelegate.swift */,
-				468910562681DAA400499F72 /* SceneDelegate.swift */,
 				4689108D2681DD1000499F72 /* SavedSiteListViewController.swift */,
 				468910972681F39C00499F72 /* AddSiteViewController.swift */,
 				468910A226820BCD00499F72 /* CoreDataHelper.swift */,
@@ -284,7 +281,6 @@
 				468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */,
 				468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */,
 				4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */,
-				468910572681DAA400499F72 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -445,7 +441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -460,15 +456,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Watcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abhishek.Watcher;
+				PRODUCT_BUNDLE_IDENTIFIER = net.xkern.Watcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -479,15 +477,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Watcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abhishek.Watcher;
+				PRODUCT_BUNDLE_IDENTIFIER = net.xkern.Watcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
