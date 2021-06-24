@@ -11,6 +11,7 @@ class SavedSiteListViewController: UIViewController {
     
     @IBOutlet weak var siteListTableView: UITableView!
     var siteListArray=[Any]()
+    var placeHolderView = UIView()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
@@ -19,9 +20,37 @@ class SavedSiteListViewController: UIViewController {
        
     }
     override func viewWillAppear(_ animated: Bool) {
-        siteListArray = fetchSavedSites()
         super.viewWillAppear(true)
+        reeloadData()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        placeHolderView.removeFromSuperview()
+    }
+    func reeloadData(){
+        siteListArray = fetchSavedSites()
+        if(siteListArray.isEmpty){
+            showPlaceHolderText()
+        }
+        else{
+            siteListTableView.reloadData()
+        }
+    }
+    
+    func showPlaceHolderText(){
+        placeHolderView.frame = siteListTableView.bounds
+        placeHolderView.backgroundColor = UIColor.black
+        siteListTableView.addSubview(placeHolderView)
         
+        let placeholderLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: siteListTableView.frame.size.width-120, height: 150))
+        placeholderLabel.center = CGPoint(x: placeHolderView.center.x, y: placeHolderView.center.y-60)
+        placeHolderView.addSubview(placeholderLabel)
+        placeholderLabel.textColor = UIColor.white
+        placeholderLabel.font = UIFont.systemFont(ofSize: 20)
+        placeholderLabel.backgroundColor = UIColor.black
+        placeholderLabel.numberOfLines = 0
+        placeholderLabel.textAlignment = .center
+        placeholderLabel.text = "No websites on watch list.\n Please tap on the 'Add' button on top to start."
     }
     func configureNavBar(){
         self.navigationController?.navigationBar.isTranslucent = false
@@ -34,7 +63,7 @@ class SavedSiteListViewController: UIViewController {
     @objc func navigateToAddSitePage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddSiteVC") as! AddSiteViewController
-       // navigationController?.pushViewController(nextViewController, animated: true)
+//       navigationController?.pushViewController(nextViewController, animated: true)
         let addNavigationController = UINavigationController(rootViewController: nextViewController)
         present(addNavigationController, animated: true, completion: nil)
     }
@@ -50,6 +79,7 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
         siteCell.siteAddressLabel.text = site.value(forKey: kSiteAddress) as? String
         siteCell.siteNameLabel.text = site.value(forKey: kSiteName) as? String
         siteCell.siteChangesLabel.text = site.value(forKey: kSiteLastUpdated) as? String
+        siteCell.siteThumbImageView.image = getSavedImage(named: (site.value(forKey: kSiteImage) as? String)!)
         
         return siteCell
     }

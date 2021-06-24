@@ -22,12 +22,12 @@ extension AddSiteViewController{
        
         //Check for duplicates
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSite")
-        fetchRequest.predicate = NSPredicate(format: "siteName == %@",siteName)
+     //   fetchRequest.predicate = NSPredicate(format: "siteName == %@",siteName)
         fetchRequest.predicate = NSPredicate(format: "siteUrl == %@",siteAddress)
         do {
             let count = try context.count(for: fetchRequest)
             if count > 0 {
-                print("item exists")
+                showAlertwith(title: "Oops!", message: "Cannot add website.URL already added.")
             }
             else{
                 print("item count\(count)")
@@ -35,9 +35,10 @@ extension AddSiteViewController{
                 newSite.setValue(siteName, forKey: kSiteName)
                 newSite.setValue(siteAddress, forKey: kSiteAddress)
                 newSite.setValue(lastUpdated, forKey: kSiteLastUpdated)
-                newSite.setValue(kSiteImage, forKey: kSiteImage)
+                newSite.setValue(image, forKey: kSiteImage)
                 do{
                     try context.save()
+                showAlertwith(title: "Voila!", message: "Website added to watch list.")
                 }catch let error as NSError{
                     print("Failed to write to core data\(error)")
                 }
@@ -59,6 +60,6 @@ extension SavedSiteListViewController {
         }catch let error as NSError{
             print("\(error),\(error.userInfo)")
         }
-        return sites
+        return sites.reversed()
     }
 }

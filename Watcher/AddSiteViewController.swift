@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 class AddSiteViewController: UIViewController {
-
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchFieldBg: UIView!
     @IBOutlet weak var addWebsiteButton: UIButton!
@@ -20,7 +20,8 @@ class AddSiteViewController: UIViewController {
         configureNavBarItems()
         searchTextField.keyboardType = .URL
         searchFieldBg.layer.cornerRadius = 16
-        let url = URL(string: "https://ajio.com/")!
+        searchTextField.text = "https://github.com"
+        let url = URL(string: "https://github.com")!
         loadWebView(url: url)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +37,12 @@ class AddSiteViewController: UIViewController {
             customClearButton.isHidden = true
         }
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        let presentingVC = self.presentingViewController as!  UINavigationController
+        let vc = presentingVC.viewControllers.first as! SavedSiteListViewController
+        vc.reeloadData()
+    }
     func configureNavBarItems(){
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
@@ -45,11 +52,7 @@ class AddSiteViewController: UIViewController {
         title = "Add a URL"
         navigationItem.setLeftBarButton(cancelButton, animated: false)
     }
-    @IBAction func onReturn(){
-        searchTextField.resignFirstResponder()
-    //Add validation
-        loadWebView(url:URL(string:searchTextField.text!)!)
-    }
+    
     func loadWebView(url:URL){
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
@@ -59,13 +62,28 @@ class AddSiteViewController: UIViewController {
     }
     @IBAction func saveSiteButtonPressed(_ sender: Any) {
         //Add validation
-        addToCoreData(siteName: "Apple", siteAddress: searchTextField.text!, lastUpdated: "10-10-10", image: "tt.png")
+        let configuration = WKSnapshotConfiguration()
+        configuration.rect = CGRect(origin: .zero, size: webView.scrollView.contentSize)
+        webView.takeSnapshot(with:nil) { (image, error) in
+            if let image = image{
+                let imageFileName = Date().getString()
+                if self.saveImage(image: image, filename: imageFileName){
+                    print("saved image to file")
+                    self.addToCoreData(siteName: "No name", siteAddress: self.searchTextField.text!, lastUpdated: "10 changes since first added.", image: imageFileName)
+                }
+                else{
+                    print("couldn't save image to file")
+                }
+            }
+        }
     }
     @IBAction func didTapClearButton(_ sender: Any) {
         searchTextField.text = ""
         searchTextField.resignFirstResponder()
     }
 }
+
+//MARK: TextField Delegates & Actions
 extension AddSiteViewController:UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         customClearButton.isHidden = false
@@ -74,7 +92,14 @@ extension AddSiteViewController:UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         customClearButton.isHidden = true
     }
+    @IBAction func onReturn(){
+        searchTextField.resignFirstResponder()
+        //Add validation
+        loadWebView(url:URL(string:searchTextField.text!)!)
+    }
 }
+
+// MARK: Webview Delegates
 extension AddSiteViewController:WKNavigationDelegate, WKUIDelegate{
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         print("*****didcommit called****")
@@ -92,10 +117,10 @@ extension AddSiteViewController:WKNavigationDelegate, WKUIDelegate{
         print("*****did terminate called****")
     }
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
-     {
-       let response = navigationResponse.response as? HTTPURLResponse
-           decisionHandler(.allow)
-       // print("***LastModified****\(response?.allHeaderFields["Last-Modified"])")
+    {
+        let response = navigationResponse.response as? HTTPURLResponse
+        decisionHandler(.allow)
+        // print("***LastModified****\(response?.allHeaderFields["Last-Modified"])")
         print("***LastModified****\(response?.allHeaderFields)")
     }
 }
