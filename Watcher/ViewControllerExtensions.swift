@@ -12,8 +12,6 @@ extension UIViewController{
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-    func showAlertWithTextField(title:String, desctription:String){
-    }
     func showLoadingIndicator(){
         
     }

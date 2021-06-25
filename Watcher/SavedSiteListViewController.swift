@@ -21,7 +21,8 @@ class SavedSiteListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        reeloadData()
+          getData()
+    reeloadData()
     }
     func reeloadData(){
         siteListArray = fetchSavedSites()
@@ -83,4 +84,31 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
+
+    func getData(){
+        let url = URL(string: "https://www.apple.com/in")
+        guard let requestUrl = url else { fatalError() }
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            print("dfgffdhdhddd\(response)----end")
+            print("dfgffdhdhddd\(data)-----end")
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                print("Response HTTP Status code: \(response.statusCode)")
+            }
+            
+            if let data = data {
+//               print("dfgjhkjdhf : : : \( String(data: data, encoding: .utf8))")
+                //  self.parse(json: data)
+            }
+            
+        }
+        task.resume()
+    }
+   
 }

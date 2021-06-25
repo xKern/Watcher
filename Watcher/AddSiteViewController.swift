@@ -20,6 +20,7 @@ class AddSiteViewController: UIViewController {
         super.viewDidLoad()
         configureNavBarItems()
         searchTextField.keyboardType = .URL
+        searchTextField.autocorrectionType = .no
         searchFieldBg.layer.cornerRadius = 16
         searchTextField.text = "https://github.com"
         let url = URL(string: "https://github.com")!
@@ -63,21 +64,7 @@ class AddSiteViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func saveSiteButtonPressed(_ sender: Any) {
-        //Add validation
-        let configuration = WKSnapshotConfiguration()
-        configuration.rect = CGRect(origin: .zero, size: webView.scrollView.contentSize)
-        webView.takeSnapshot(with:nil) { (image, error) in
-            if let image = image{
-                let imageFileName = Date().getString()
-                if self.saveImage(image: image, filename: imageFileName){
-                    print("saved image to file")
-                    self.addToCoreData(siteName: "No name", siteAddress: self.searchTextField.text!, lastUpdated: "10 changes since first added.", image: imageFileName)
-                }
-                else{
-                    print("couldn't save image to file")
-                }
-            }
-        }
+        showAlertWithTextField(title: "abc", desctription: "def")
     }
     @IBAction func didTapClearButton(_ sender: Any) {
 //        if isReadyToReload{

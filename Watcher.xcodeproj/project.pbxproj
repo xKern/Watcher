@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4617DE8A2685EBE200F19D46 /* AddSiteViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */; };
 		468910552681DAA400499F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910542681DAA400499F72 /* AppDelegate.swift */; };
 		4689105C2681DAA600499F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4689105A2681DAA600499F72 /* Main.storyboard */; };
 		4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4689105D2681DAA600499F72 /* Watcher.xcdatamodeld */; };
@@ -20,6 +21,7 @@
 		468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910A226820BCD00499F72 /* CoreDataHelper.swift */; };
 		468910A82682162600499F72 /* tt.png in Resources */ = {isa = PBXBuildFile; fileRef = 468910A72682162600499F72 /* tt.png */; };
 		4694982B2682D67C000B2273 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */; };
+		4694A65B2685F33100C5EB55 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694A65A2685F33100C5EB55 /* StringExtensions.swift */; };
 		46C9AD9626844F26002284B3 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9AD9526844F25002284B3 /* DateExtention.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSiteViewController+Extensions.swift"; sourceTree = "<group>"; };
 		468910512681DAA300499F72 /* Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		468910542681DAA400499F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4689105B2681DAA600499F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		468910A226820BCD00499F72 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		468910A72682162600499F72 /* tt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt.png; sourceTree = "<group>"; };
 		4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		4694A65A2685F33100C5EB55 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		46C9AD9526844F25002284B3 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,9 +119,11 @@
 				468910542681DAA400499F72 /* AppDelegate.swift */,
 				4689108D2681DD1000499F72 /* SavedSiteListViewController.swift */,
 				468910972681F39C00499F72 /* AddSiteViewController.swift */,
+				4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */,
 				468910A226820BCD00499F72 /* CoreDataHelper.swift */,
 				4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */,
 				46C9AD9526844F25002284B3 /* DateExtention.swift */,
+				4694A65A2685F33100C5EB55 /* StringExtensions.swift */,
 				468910922681E5A700499F72 /* SiteListCell.swift */,
 				4689105A2681DAA600499F72 /* Main.storyboard */,
 				468910602681DAFC00499F72 /* Assets.xcassets */,
@@ -279,11 +285,13 @@
 			files = (
 				4694982B2682D67C000B2273 /* ViewControllerExtensions.swift in Sources */,
 				468910552681DAA400499F72 /* AppDelegate.swift in Sources */,
+				4694A65B2685F33100C5EB55 /* StringExtensions.swift in Sources */,
 				46C9AD9626844F26002284B3 /* DateExtention.swift in Sources */,
 				468910932681E5A700499F72 /* SiteListCell.swift in Sources */,
 				4689108E2681DD1000499F72 /* SavedSiteListViewController.swift in Sources */,
 				468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */,
 				468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */,
+				4617DE8A2685EBE200F19D46 /* AddSiteViewController+Extensions.swift in Sources */,
 				4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
