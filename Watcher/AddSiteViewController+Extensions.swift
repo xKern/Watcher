@@ -33,7 +33,7 @@ extension AddSiteViewController{
         let alert = responder as! UIAlertController
         let r = sender.text?.notEmptyAfterTrimmingWhiteSpaces()
         alert.actions[0].isEnabled = r!
-    }
+    } 
     func saveSite(siteName:String){
         let configuration = WKSnapshotConfiguration()
         configuration.rect = CGRect(origin: .zero, size: webView.scrollView.contentSize)

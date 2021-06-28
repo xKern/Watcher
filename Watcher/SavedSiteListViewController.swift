@@ -89,22 +89,19 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
         let url = URL(string: "https://www.apple.com/in")
         guard let requestUrl = url else { fatalError() }
         var request = URLRequest(url: requestUrl)
-        request.httpMethod = "GET"
+        request.httpMethod = "HEAD"
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            print("dfgffdhdhddd\(response)----end")
-            print("dfgffdhdhddd\(data)-----end")
+            
             if let error = error {
                 print("Error took place \(error)")
                 return
             }
             
             if let response = response as? HTTPURLResponse {
-                print("Response HTTP Status code: \(response.statusCode)")
+    
+                print("Response HTTP Status code: \(response.allHeaderFields["Content-Length"])")
             }
-            
-            if let data = data {
-//               print("dfgjhkjdhf : : : \( String(data: data, encoding: .utf8))")
-                //  self.parse(json: data)
+            if data != nil {
             }
             
         }
