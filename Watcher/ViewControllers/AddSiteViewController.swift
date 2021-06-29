@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 class AddSiteViewController: UIViewController {
-
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchFieldBg: UIView!
     @IBOutlet weak var webView: WKWebView!
@@ -26,13 +26,16 @@ class AddSiteViewController: UIViewController {
         return view
     }()
     
+  //  var isReadyToReload = false
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBarItems()
         configureAddButtonView()
         searchTextField.keyboardType = .URL
+        searchTextField.autocorrectionType = .no
         searchFieldBg.layer.cornerRadius = 16
-        let url = URL(string: "https://ajio.com/")!
+        searchTextField.text = "https://github.com"
+        let url = URL(string: "https://github.com")!
         loadWebView(url: url)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +50,13 @@ class AddSiteViewController: UIViewController {
         else{
             customClearButton.isHidden = true
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        let presentingVC = self.presentingViewController as!  UINavigationController
+        let vc = presentingVC.viewControllers.first as! SavedSiteListViewController
+        vc.reeloadData()
     }
     
     func configureNavBarItems(){
@@ -82,12 +92,6 @@ class AddSiteViewController: UIViewController {
         button.centerYAnchor.constraint(equalTo: addButtonView.centerYAnchor, constant: 0).isActive = true
     }
     
-    @IBAction func onReturn(){
-        searchTextField.resignFirstResponder()
-    //Add validation
-        loadWebView(url:URL(string:searchTextField.text!)!)
-    }
-    
     func loadWebView(url:URL){
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
@@ -98,16 +102,21 @@ class AddSiteViewController: UIViewController {
     }
     
     @IBAction func saveSiteButtonPressed(_ sender: Any) {
-        //Add validation
-        addToCoreData(siteName: "Apple", siteAddress: searchTextField.text!, lastUpdated: "10-10-10", image: "tt.png")
+//        showAlertWithTextField(title: "abc", desctription: "def")
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {
-        searchTextField.text = ""
-        searchTextField.resignFirstResponder()
+//        if isReadyToReload{
+//            webView.reload()
+//        }
+//        else{
+            searchTextField.text = ""
+            searchTextField.resignFirstResponder()
+  //      }
     }
 }
 
+//MARK: TextField Delegates & Actions
 extension AddSiteViewController:UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         customClearButton.isHidden = false
@@ -117,9 +126,17 @@ extension AddSiteViewController:UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         customClearButton.isHidden = true
     }
+    @IBAction func onReturn(){
+        searchTextField.resignFirstResponder()
+        // TO DO : Add validation
+        loadWebView(url:URL(string:searchTextField.text!)!)
+    }
 }
+
+// MARK: Webview Delegates
 extension AddSiteViewController:WKNavigationDelegate, WKUIDelegate{
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        
         print("*****didcommit called****")
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -130,17 +147,54 @@ extension AddSiteViewController:WKNavigationDelegate, WKUIDelegate{
         print("*****did fail called****/n\(error.localizedDescription)")
     }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+       
         print("*****did fail prov. navigation called****/n\(error.localizedDescription)")
     }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
         print("*****did terminate called****")
     }
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
-     {
-       let response = navigationResponse.response as? HTTPURLResponse
-           decisionHandler(.allow)
-       // print("***LastModified****\(response?.allHeaderFields["Last-Modified"])")
-        print("***LastModified****\(response?.allHeaderFields)")
+    {
+        let response = navigationResponse.response as? HTTPURLResponse
+        decisionHandler(.allow)
+        // print("***LastModified****\(response?.allHeaderFields["Last-Modified"])")
+     //   print("***LastModified****\(response?.allHeaderFields)")
     }
 }
+//MARK: Ignore
+/*
+extension AddSiteViewController{
+    enum WebViewState {
+        case notLoaded
+        case loading
+        case loadFailed
+        case loadFailedDueToTypo
+        case successFullyLoaded
+    }
+ */
+    // MARK: Ignore
+   /*
+    func manageWebViewStateChange(webViewState:WebViewState){
+        switch webViewState {
+        case .notLoaded:
+            self.addWebsiteButton.isHidden = true
+            self.isReadyToReload = false
+            customClearButton.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
+        case .loading:
+            self.addWebsiteButton.isHidden = true
+            self.isReadyToReload = false
+        case .loadFailed:
+            self.addWebsiteButton.isHidden = true
+            self.isReadyToReload = false
+        case .loadFailedDueToTypo:
+            self.addWebsiteButton.isHidden = true
+            self.isReadyToReload = false
+        case .successFullyLoaded:
+            self.addWebsiteButton.isHidden = true
+            self.isReadyToReload = false
+        }
+    }
+ */
+//}
 //https://xkern.net
+//https://www.apple.com/in
