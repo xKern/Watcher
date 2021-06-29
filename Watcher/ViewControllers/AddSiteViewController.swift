@@ -76,6 +76,7 @@ class AddSiteViewController: UIViewController {
         let button = RoundedButton()
         button.insets = UIEdgeInsets(top: 15, left: 25, bottom: 15, right: 25)
         addButtonView.contentView.addSubview(button)
+        button.addTarget(self, action: #selector(saveSiteButtonPressed(_:)), for: .touchUpInside)
         button.setTitle("Add Website", for: .normal)
         button.backgroundColor = view.tintColor
         let buttonHeight = button.intrinsicContentSize.height
@@ -102,7 +103,7 @@ class AddSiteViewController: UIViewController {
     }
     
     @IBAction func saveSiteButtonPressed(_ sender: Any) {
-//        showAlertWithTextField(title: "abc", desctription: "def")
+        showAlertWithTextField(title: "abc", desctription: "def")
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {
@@ -119,8 +120,8 @@ class AddSiteViewController: UIViewController {
 //MARK: TextField Delegates & Actions
 extension AddSiteViewController:UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        customClearButton.isHidden = false
         canAddURL = false
+        customClearButton.isHidden = false
         
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -136,11 +137,10 @@ extension AddSiteViewController:UITextFieldDelegate{
 // MARK: Webview Delegates
 extension AddSiteViewController:WKNavigationDelegate, WKUIDelegate{
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        
         print("*****didcommit called****")
+        canAddURL = true
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        canAddURL = true
         print("*****did finish called****")
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
