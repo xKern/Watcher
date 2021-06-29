@@ -20,9 +20,9 @@
 		468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910972681F39C00499F72 /* AddSiteViewController.swift */; };
 		468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910A226820BCD00499F72 /* CoreDataHelper.swift */; };
 		468910A82682162600499F72 /* tt.png in Resources */ = {isa = PBXBuildFile; fileRef = 468910A72682162600499F72 /* tt.png */; };
-		4694982B2682D67C000B2273 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */; };
-		4694A65B2685F33100C5EB55 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694A65A2685F33100C5EB55 /* StringExtensions.swift */; };
-		46C9AD9626844F26002284B3 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9AD9526844F25002284B3 /* DateExtention.swift */; };
+		4694982B2682D67C000B2273 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694982A2682D67C000B2273 /* UIViewController+Snapshot.swift */; };
+		4694A65B2685F33100C5EB55 /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694A65A2685F33100C5EB55 /* String+Trim.swift */; };
+		81365713268ABC0D0033CE1F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81365712268ABC0D0033CE1F /* UIViewController+Alert.swift */; };
 		81BB4FDE26841D4C00BD31B7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4FDD26841D4B00BD31B7 /* RoundedButton.swift */; };
 		81BB4FE326841DBE00BD31B7 /* UIButton+BGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4FE226841DBE00BD31B7 /* UIButton+BGColor.swift */; };
 		81BB4FE826841DE000BD31B7 /* UIColor+dark_light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4FE726841DE000BD31B7 /* UIColor+dark_light.swift */; };
@@ -65,9 +65,9 @@
 		468910972681F39C00499F72 /* AddSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 		468910A226820BCD00499F72 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		468910A72682162600499F72 /* tt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt.png; sourceTree = "<group>"; };
-		4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
-		4694A65A2685F33100C5EB55 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		46C9AD9526844F25002284B3 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
+		4694982A2682D67C000B2273 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
+		4694A65A2685F33100C5EB55 /* String+Trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
+		81365712268ABC0D0033CE1F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		81BB4FDD26841D4B00BD31B7 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		81BB4FE226841DBE00BD31B7 /* UIButton+BGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+BGColor.swift"; sourceTree = "<group>"; };
 		81BB4FE726841DE000BD31B7 /* UIColor+dark_light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+dark_light.swift"; sourceTree = "<group>"; };
@@ -183,12 +183,12 @@
 		81BB4FD926841C2600BD31B7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4694982A2682D67C000B2273 /* ViewControllerExtensions.swift */,
+				4694982A2682D67C000B2273 /* UIViewController+Snapshot.swift */,
 				4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */,
-				46C9AD9526844F25002284B3 /* DateExtention.swift */,
-				4694A65A2685F33100C5EB55 /* StringExtensions.swift */,
+				4694A65A2685F33100C5EB55 /* String+Trim.swift */,
 				81BB4FE726841DE000BD31B7 /* UIColor+dark_light.swift */,
 				81BB4FE226841DBE00BD31B7 /* UIButton+BGColor.swift */,
+				81365712268ABC0D0033CE1F /* UIViewController+Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -324,10 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4694982B2682D67C000B2273 /* ViewControllerExtensions.swift in Sources */,
+				4694982B2682D67C000B2273 /* UIViewController+Snapshot.swift in Sources */,
 				468910552681DAA400499F72 /* AppDelegate.swift in Sources */,
-				4694A65B2685F33100C5EB55 /* StringExtensions.swift in Sources */,
-				46C9AD9626844F26002284B3 /* DateExtention.swift in Sources */,
+				4694A65B2685F33100C5EB55 /* String+Trim.swift in Sources */,
 				468910932681E5A700499F72 /* SiteListCell.swift in Sources */,
 				81BB4FDE26841D4C00BD31B7 /* RoundedButton.swift in Sources */,
 				4689108E2681DD1000499F72 /* SavedSiteListViewController.swift in Sources */,
@@ -337,6 +336,7 @@
 				81BB4FE826841DE000BD31B7 /* UIColor+dark_light.swift in Sources */,
 				4617DE8A2685EBE200F19D46 /* AddSiteViewController+Extensions.swift in Sources */,
 				4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */,
+				81365713268ABC0D0033CE1F /* UIViewController+Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

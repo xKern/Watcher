@@ -39,7 +39,8 @@ extension AddSiteViewController{
         configuration.rect = CGRect(origin: .zero, size: webView.scrollView.contentSize)
         webView.takeSnapshot(with:nil) { (image, error) in
             if let image = image{
-                let imageFileName = Date().getString()
+//                let imageFileName = UUID().uuidString
+                let imageFileName = "IMG_\(Int(Date().timeIntervalSince1970))"
                 if self.saveImage(image: image, filename: imageFileName){
                     print("saved image to file")
                     self.addToCoreData(siteName: siteName, siteAddress: self.searchTextField.text!, lastUpdated: "10 changes since first added.", image: imageFileName)
