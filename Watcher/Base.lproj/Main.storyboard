@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jL6-uH-Z6d">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -190,49 +191,15 @@
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-oD-S82">
-                                        <rect key="frame" x="0.0" y="782" width="414" height="70"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nbc-9z-KKt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQA-h3-nrF">
-                                                    <rect key="frame" x="144.5" y="20" width="125" height="30"/>
-                                                    <color key="backgroundColor" red="0.0023197096310000002" green="0.63351756329999998" blue="0.99767357109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Efw-fK-dt1"/>
-                                                        <constraint firstAttribute="width" constant="125" id="xQK-hg-UaH"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Add Website">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="saveSiteButtonPressed:" destination="Du7-Km-GAK" eventType="touchUpInside" id="GbP-2M-YLf"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="hQA-h3-nrF" firstAttribute="centerX" secondItem="Nbc-9z-KKt" secondAttribute="centerX" id="1Kn-lb-B1H"/>
-                                                <constraint firstItem="hQA-h3-nrF" firstAttribute="centerY" secondItem="Nbc-9z-KKt" secondAttribute="centerY" id="mFo-eZ-EXe"/>
-                                            </constraints>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="2bK-YT-gIa"/>
-                                        </constraints>
-                                        <blurEffect style="dark"/>
-                                    </visualEffectView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="lNS-oD-S82" firstAttribute="leading" secondItem="D83-wb-K3D" secondAttribute="leading" id="3TM-ry-OAD"/>
                                     <constraint firstAttribute="trailing" secondItem="Ppz-j3-jew" secondAttribute="trailing" constant="15" id="BWE-fS-BUB"/>
                                     <constraint firstItem="Ppz-j3-jew" firstAttribute="leading" secondItem="D83-wb-K3D" secondAttribute="leading" constant="15" id="BuF-ms-F0x"/>
                                     <constraint firstItem="Ppz-j3-jew" firstAttribute="top" secondItem="tPC-bg-uax" secondAttribute="bottom" constant="12" id="NKR-a2-Lbm"/>
                                     <constraint firstAttribute="bottom" secondItem="Ppz-j3-jew" secondAttribute="bottom" constant="34" id="S8P-fK-pz4"/>
-                                    <constraint firstAttribute="bottom" secondItem="lNS-oD-S82" secondAttribute="bottom" id="elg-Zj-wmE"/>
                                     <constraint firstAttribute="trailing" secondItem="tPC-bg-uax" secondAttribute="trailing" constant="15" id="i8n-xw-p9a"/>
                                     <constraint firstItem="tPC-bg-uax" firstAttribute="leading" secondItem="D83-wb-K3D" secondAttribute="leading" constant="15" id="iXJ-Yl-Wo4"/>
-                                    <constraint firstAttribute="trailing" secondItem="lNS-oD-S82" secondAttribute="trailing" id="uBh-8T-OG0"/>
                                     <constraint firstItem="tPC-bg-uax" firstAttribute="top" secondItem="D83-wb-K3D" secondAttribute="top" constant="5" id="vGV-40-qvq"/>
                                 </constraints>
                             </view>
@@ -247,7 +214,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addWebsiteButton" destination="hQA-h3-nrF" id="hoe-ve-1YG"/>
                         <outlet property="customClearButton" destination="NQS-1n-kUL" id="5yr-U0-kBt"/>
                         <outlet property="searchFieldBg" destination="tPC-bg-uax" id="6KL-hb-96i"/>
                         <outlet property="searchTextField" destination="BO5-gt-DDA" id="1yc-bY-PFn"/>
