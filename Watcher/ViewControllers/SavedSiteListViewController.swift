@@ -18,7 +18,17 @@ class SavedSiteListViewController: UIViewController {
         siteListTableView.delegate = self
         siteListTableView.dataSource = self
         configurePlaceHolderText()
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(managedObjectContextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: context)
+        
     }
+    @objc func managedObjectContextObjectsDidChange(_ notification: Notification){
+        siteListArray = fetchSavedSites()
+        DispatchQueue.main.async {
+            self.siteListTableView.reloadData()
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -50,12 +60,12 @@ class SavedSiteListViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         let testUIBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.navigateToAddSitePage))
-                self.navigationItem.rightBarButtonItem  = testUIBarButtonItem
+        self.navigationItem.rightBarButtonItem  = testUIBarButtonItem
     }
     @objc func navigateToAddSitePage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AddSiteVC") as! AddSiteViewController
-//       navigationController?.pushViewController(nextViewController, animated: true)
+        //       navigationController?.pushViewController(nextViewController, animated: true)
         let addNavigationController = UINavigationController(rootViewController: nextViewController)
         present(addNavigationController, animated: true, completion: nil)
     }

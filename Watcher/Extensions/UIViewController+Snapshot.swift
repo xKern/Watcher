@@ -26,7 +26,6 @@ extension UIViewController{
     }
     func getSavedImage(named: String) -> UIImage? {
         if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
-            print("sfgasgfafg\(URL(fileURLWithPath: dir.absoluteString).appendingPathComponent("\(named).png").path)")
             return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
         }
         return nil
