@@ -13,16 +13,15 @@ let kSiteName = "siteName"
 let kSiteAddress = "siteUrl"
 let kSiteLastUpdated = "lastUpdated"
 let kSiteImage = "siteImageName"
+let kContentLength = "contentLength"
 
 extension AddSiteViewController{
     func addToCoreData(siteName:String, siteAddress:String, lastUpdated:String, image:String){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "SavedSite", in: context)
-       
+        
         //Check for duplicates
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSite")
-     //   fetchRequest.predicate = NSPredicate(format: "siteName == %@",siteName)
+        //   fetchRequest.predicate = NSPredicate(format: "siteName == %@",siteName)
         fetchRequest.predicate = NSPredicate(format: "siteUrl == %@",siteAddress)
         do {
             let count = try context.count(for: fetchRequest)
@@ -38,7 +37,7 @@ extension AddSiteViewController{
                 newSite.setValue(image, forKey: kSiteImage)
                 do{
                     try context.save()
-                showAlertwith(title: "Voila!", message: "Website added to watch list.")
+                    showAlertwith(title: "Voila!", message: "Website added to watch list.")
                 }catch let error as NSError{
                     print("Failed to write to core data\(error)")
                 }
@@ -48,18 +47,23 @@ extension AddSiteViewController{
         }
     }
 }
-
 extension SavedSiteListViewController {
     func fetchSavedSites() -> [Any]{
         var sites = [Any]()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSite")
         do{
-             sites = try context.fetch(fetchRequest)
+            sites = try context.fetch(fetchRequest)
         }catch let error as NSError{
             print("\(error),\(error.userInfo)")
         }
         return sites.reversed()
     }
+}
+
+extension UIViewController{
+        var context:NSManagedObjectContext{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            return context
+        }
 }

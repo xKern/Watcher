@@ -22,12 +22,12 @@ class SavedSiteListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        getData()
         reeloadData()
     }
     func reeloadData(){
         siteListArray = fetchSavedSites()
         placeholderLabel.isHidden = !siteListArray.isEmpty
+        checkForUpdates()
     }
     
     func configurePlaceHolderText(){
@@ -78,28 +78,4 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
-
-    func getData(){
-        let url = URL(string: "https://www.apple.com/in")
-        guard let requestUrl = url else { fatalError() }
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "HEAD"
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                print("Error took place \(error)")
-                return
-            }
-            
-            if let response = response as? HTTPURLResponse {
-    
-                print("Response HTTP Status code: \(response.allHeaderFields["Content-Length"])")
-            }
-            if data != nil {
-            }
-            
-        }
-        task.resume()
-    }
-   
 }
