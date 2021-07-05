@@ -12,6 +12,8 @@ class SavedSiteListViewController: UIViewController {
     @IBOutlet weak var siteListTableView: UITableView!
     var siteListArray=[Any]()
     var placeholderLabel = UILabel()
+    var webSiteRecordsArray: [WebsiteRecord] = []
+    let pendingOperations = PendingOperations()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
@@ -24,6 +26,7 @@ class SavedSiteListViewController: UIViewController {
     }
     @objc func managedObjectContextObjectsDidChange(_ notification: Notification){
         siteListArray = fetchSavedSites()
+        createWebSiteRecordsArray()
         DispatchQueue.main.async {
             self.siteListTableView.reloadData()
         }
@@ -36,6 +39,7 @@ class SavedSiteListViewController: UIViewController {
     }
     func reeloadData(){
         siteListArray = fetchSavedSites()
+        createWebSiteRecordsArray()
         placeholderLabel.isHidden = !siteListArray.isEmpty
         checkForUpdates()
     }
@@ -77,15 +81,71 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let site = siteListArray[indexPath.row] as! NSManagedObject
+        let webSiteRecord = webSiteRecordsArray [indexPath.row]
         let siteCell = tableView.dequeueReusableCell(withIdentifier: "SiteCell")  as! SiteListCell
         siteCell.siteAddressLabel.text = site.value(forKey: kSiteAddress) as? String
         siteCell.siteNameLabel.text = site.value(forKey: kSiteName) as? String
         siteCell.siteChangesLabel.text = site.value(forKey: kSiteLastUpdated) as? String
         siteCell.siteThumbImageView.image = getSavedImage(named: (site.value(forKey: kSiteImage) as? String)!)
-        
+        switch webSiteRecord.state {
+        case .failed, .similar, .updated:
+            siteCell.actIivityIndicator.stopAnimating()
+        case  .started:
+            siteCell.actIivityIndicator.startAnimating()
+        case .new:
+            siteCell.actIivityIndicator.startAnimating()
+            startOperations(for: webSiteRecord, at: indexPath)
+            
+        }
         return siteCell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
+    }
+}
+
+extension SavedSiteListViewController{
+    func createWebSiteRecordsArray(){
+        for objects in siteListArray {
+            let site = objects as! NSManagedObject
+            let webSiteRecord = WebsiteRecord(name: site.value(forKey: kSiteName) as! String, url: URL(string: site.value(forKey: kSiteAddress) as! String)!, image: site.value(forKey: kSiteImage) as! String)
+            webSiteRecordsArray.append(webSiteRecord)
+        }
+    }
+    
+    func startOperations(for webSiteRecord: WebsiteRecord, at indexPath: IndexPath) {
+        switch (webSiteRecord.state) {
+        case .new:
+            startDownload(for: webSiteRecord, at: indexPath)
+        case .updated:
+            takeScreenShot()
+        default:
+            NSLog("do nothing..\(webSiteRecord.state)")
+        }
+    }
+    
+    func startDownload(for record: WebsiteRecord, at indexPath: IndexPath) {
+        guard pendingOperations.updatesInProgress[indexPath] == nil else {
+            return
+        }
+        let manager = UpdateManager(record)
+        
+        manager.completionBlock = {
+            if manager.isCancelled {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.pendingOperations.updatesInProgress.removeValue(forKey: indexPath)
+                self.siteListTableView.reloadRows(at: [indexPath], with: .fade)
+              
+            }
+        }
+        pendingOperations.updatesInProgress[indexPath] = manager
+        pendingOperations.updateQueue.addOperation(manager)
+    }
+    
+    func takeScreenShot(){
+        
     }
 }

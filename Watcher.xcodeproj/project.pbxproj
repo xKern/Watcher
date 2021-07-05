@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4617DE8A2685EBE200F19D46 /* AddSiteViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */; };
+		46518B502692578100888F22 /* WebsiteOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46518B4F2692578100888F22 /* WebsiteOperations.swift */; };
 		468910552681DAA400499F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910542681DAA400499F72 /* AppDelegate.swift */; };
 		4689105C2681DAA600499F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4689105A2681DAA600499F72 /* Main.storyboard */; };
 		4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4689105D2681DAA600499F72 /* Watcher.xcdatamodeld */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSiteViewController+Extensions.swift"; sourceTree = "<group>"; };
+		46518B4F2692578100888F22 /* WebsiteOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteOperations.swift; sourceTree = "<group>"; };
 		468910512681DAA300499F72 /* Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		468910542681DAA400499F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4689105B2681DAA600499F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				468910A226820BCD00499F72 /* CoreDataHelper.swift */,
+				46518B4F2692578100888F22 /* WebsiteOperations.swift */,
 			);
 			path = "Models and Objects";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				81BB4FE326841DBE00BD31B7 /* UIButton+BGColor.swift in Sources */,
 				468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */,
 				468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */,
+				46518B502692578100888F22 /* WebsiteOperations.swift in Sources */,
 				81BB4FE826841DE000BD31B7 /* UIColor+dark_light.swift in Sources */,
 				4617DE8A2685EBE200F19D46 /* AddSiteViewController+Extensions.swift in Sources */,
 				4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */,
@@ -519,7 +523,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Watcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,7 +544,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Watcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

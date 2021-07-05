@@ -55,7 +55,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swU-Sg-BRI">
-                                                            <rect key="frame" x="93" y="15" width="281" height="21"/>
+                                                            <rect key="frame" x="93" y="15" width="259" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -80,10 +80,19 @@
                                                                 <constraint firstAttribute="height" constant="26" id="x5E-jo-ebL"/>
                                                             </constraints>
                                                         </button>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9hc-OY-5aT">
+                                                            <rect key="frame" x="360" y="11" width="20" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="jB1-P7-ECV"/>
+                                                                <constraint firstAttribute="width" constant="20" id="osX-pp-0x7"/>
+                                                            </constraints>
+                                                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.15686274509803921" green="0.15808770059999999" blue="0.15805399419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="8kL-dw-KGp" firstAttribute="leading" secondItem="OHj-Ia-hhR" secondAttribute="trailing" constant="10" id="7NV-cT-fwi"/>
+                                                        <constraint firstItem="9hc-OY-5aT" firstAttribute="leading" secondItem="swU-Sg-BRI" secondAttribute="trailing" constant="8" symbolic="YES" id="CCp-YR-tIY"/>
                                                         <constraint firstItem="swU-Sg-BRI" firstAttribute="top" secondItem="Clc-i9-2gk" secondAttribute="top" constant="15" id="Csa-OV-rgV"/>
                                                         <constraint firstAttribute="trailing" secondItem="ZJ7-U2-hQ0" secondAttribute="trailing" constant="8" id="LxN-Hk-a9y"/>
                                                         <constraint firstItem="QOA-Q0-bz3" firstAttribute="leading" secondItem="OHj-Ia-hhR" secondAttribute="trailing" constant="10" id="O3V-mh-PJF"/>
@@ -93,10 +102,11 @@
                                                         <constraint firstItem="swU-Sg-BRI" firstAttribute="leading" secondItem="OHj-Ia-hhR" secondAttribute="trailing" constant="10" id="fbe-i0-Afx"/>
                                                         <constraint firstAttribute="bottom" secondItem="OHj-Ia-hhR" secondAttribute="bottom" constant="11" id="ha2-nb-Ubz"/>
                                                         <constraint firstAttribute="bottom" secondItem="8kL-dw-KGp" secondAttribute="bottom" constant="15" id="iUP-eE-bHC"/>
+                                                        <constraint firstAttribute="trailing" secondItem="9hc-OY-5aT" secondAttribute="trailing" constant="4" id="iy8-uG-fVX"/>
                                                         <constraint firstItem="OHj-Ia-hhR" firstAttribute="leading" secondItem="Clc-i9-2gk" secondAttribute="leading" constant="8" id="pFl-Bj-Ai3"/>
+                                                        <constraint firstItem="9hc-OY-5aT" firstAttribute="top" secondItem="Clc-i9-2gk" secondAttribute="top" constant="11" id="sLl-Yd-mc2"/>
                                                         <constraint firstItem="ZJ7-U2-hQ0" firstAttribute="leading" secondItem="8kL-dw-KGp" secondAttribute="trailing" constant="15" id="ueH-n1-fb8"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZJ7-U2-hQ0" secondAttribute="bottom" constant="11" id="zOC-O1-cpt"/>
-                                                        <constraint firstAttribute="trailing" secondItem="swU-Sg-BRI" secondAttribute="trailing" constant="10" id="zXg-S0-Mid"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -109,6 +119,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="actIivityIndicator" destination="9hc-OY-5aT" id="akr-7B-8qo"/>
                                             <outlet property="cellBgView" destination="Clc-i9-2gk" id="8PS-do-wuQ"/>
                                             <outlet property="quickViewButton" destination="ZJ7-U2-hQ0" id="Kf4-rh-7pE"/>
                                             <outlet property="siteAddressLabel" destination="QOA-Q0-bz3" id="7o2-9O-dlU"/>
@@ -136,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pc-eo-Qey" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1667" y="-368"/>
+            <point key="canvasLocation" x="-1668.1159420289857" y="-368.30357142857139"/>
         </scene>
         <!--Add Site View Controller-->
         <scene sceneID="3c3-sr-Sfr">

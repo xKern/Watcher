@@ -9,6 +9,7 @@ import UIKit
 
 class SiteListCell: UITableViewCell {
 
+    @IBOutlet weak var actIivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var quickViewButton: UIButton!
     @IBOutlet weak var cellBgView: UIView!
    
