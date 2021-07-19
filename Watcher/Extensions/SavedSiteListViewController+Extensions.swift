@@ -9,24 +9,27 @@ import UIKit
 import CoreData
 import Foundation
 extension SavedSiteListViewController{
-    func checkForUpdates(){
-        for i in 0 ..< siteListArray.count {
-            let site = siteListArray[i] as! NSManagedObject
-            let url = URL(string: site.value(forKey: kSiteAddress) as! String )
-            guard let requestUrl = url else { fatalError() }
-            var request = URLRequest(url: requestUrl)
+    
+    func checkForUpdates(sites:[SavedSite])  {
+        let group = DispatchGroup()
+        for site in sites {
+            guard let url =  URL(string: site.siteUrl!) else {
+                continue
+            }
+            var request = URLRequest(url: url)
             request.httpMethod = "HEAD"
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    print("Error took place \(error)")
-                    return
-                }
+            group.enter()
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
                 if let response = response as? HTTPURLResponse {
                     self.checkForWebSiteUpdates(response: (response.allHeaderFields as NSDictionary), website:site)
                 }
-            }
+            })
             task.resume()
         }
+        group.notify(queue: .main, execute: {
+            self.siteListTableView.reloadData()
+        })
     }
     
     func checkForWebSiteUpdates(response:NSDictionary, website:NSManagedObject){
@@ -35,11 +38,16 @@ extension SavedSiteListViewController{
             if website.value(forKey: kContentLength) as? String != contentLength {
                 print("content length changed")
                 website.setValue(contentLength, forKey: kContentLength)
-                do{
-                    try context.save()
-                }catch let error as NSError{
-                    print("Failed to save to core data\(error)")
+                
+                DispatchQueue.main.async {
+                    do{
+                        
+                        try self.context.save()
+                    }catch let error as NSError{
+                        print("Failed to save to core data\(error)")
+                    }
                 }
+                
             }
         }
         else if let  lastUpdated = response["Last-Modified"] as? String{

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4617DE8A2685EBE200F19D46 /* AddSiteViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */; };
 		46518B502692578100888F22 /* WebsiteOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46518B4F2692578100888F22 /* WebsiteOperations.swift */; };
+		46518B732692B86800888F22 /* SavedSite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46518B712692B86800888F22 /* SavedSite+CoreDataClass.swift */; };
+		46518B742692B86800888F22 /* SavedSite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46518B722692B86800888F22 /* SavedSite+CoreDataProperties.swift */; };
 		468910552681DAA400499F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468910542681DAA400499F72 /* AppDelegate.swift */; };
 		4689105C2681DAA600499F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4689105A2681DAA600499F72 /* Main.storyboard */; };
 		4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4689105D2681DAA600499F72 /* Watcher.xcdatamodeld */; };
@@ -24,6 +26,7 @@
 		4694982B2682D67C000B2273 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694982A2682D67C000B2273 /* UIViewController+Snapshot.swift */; };
 		4694A65B2685F33100C5EB55 /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694A65A2685F33100C5EB55 /* String+Trim.swift */; };
 		46E1EB66268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E1EB65268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift */; };
+		4F8BEB8226A56A7D00B67A41 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BEB8126A56A7D00B67A41 /* UpdateManager.swift */; };
 		81365713268ABC0D0033CE1F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81365712268ABC0D0033CE1F /* UIViewController+Alert.swift */; };
 		81BB4FDE26841D4C00BD31B7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4FDD26841D4B00BD31B7 /* RoundedButton.swift */; };
 		81BB4FE326841DBE00BD31B7 /* UIButton+BGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4FE226841DBE00BD31B7 /* UIButton+BGColor.swift */; };
@@ -50,6 +53,8 @@
 /* Begin PBXFileReference section */
 		4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSiteViewController+Extensions.swift"; sourceTree = "<group>"; };
 		46518B4F2692578100888F22 /* WebsiteOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteOperations.swift; sourceTree = "<group>"; };
+		46518B712692B86800888F22 /* SavedSite+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedSite+CoreDataClass.swift"; sourceTree = "<group>"; };
+		46518B722692B86800888F22 /* SavedSite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedSite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		468910512681DAA300499F72 /* Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		468910542681DAA400499F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4689105B2681DAA600499F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		4694982A2682D67C000B2273 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		4694A65A2685F33100C5EB55 /* String+Trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
 		46E1EB65268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedSiteListViewController+Extensions.swift"; sourceTree = "<group>"; };
+		4F8BEB8126A56A7D00B67A41 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		81365712268ABC0D0033CE1F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		81BB4FDD26841D4B00BD31B7 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		81BB4FE226841DBE00BD31B7 /* UIButton+BGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+BGColor.swift"; sourceTree = "<group>"; };
@@ -105,6 +111,8 @@
 		468910482681DAA200499F72 = {
 			isa = PBXGroup;
 			children = (
+				46518B712692B86800888F22 /* SavedSite+CoreDataClass.swift */,
+				46518B722692B86800888F22 /* SavedSite+CoreDataProperties.swift */,
 				468910532681DAA300499F72 /* Watcher */,
 				4689106D2681DAFE00499F72 /* WatcherTests */,
 				468910782681DAFE00499F72 /* WatcherUITests */,
@@ -172,6 +180,7 @@
 			children = (
 				468910A226820BCD00499F72 /* CoreDataHelper.swift */,
 				46518B4F2692578100888F22 /* WebsiteOperations.swift */,
+				4F8BEB8126A56A7D00B67A41 /* UpdateManager.swift */,
 			);
 			path = "Models and Objects";
 			sourceTree = "<group>";
@@ -334,15 +343,18 @@
 				468910552681DAA400499F72 /* AppDelegate.swift in Sources */,
 				4694A65B2685F33100C5EB55 /* String+Trim.swift in Sources */,
 				468910932681E5A700499F72 /* SiteListCell.swift in Sources */,
+				46518B732692B86800888F22 /* SavedSite+CoreDataClass.swift in Sources */,
 				81BB4FDE26841D4C00BD31B7 /* RoundedButton.swift in Sources */,
 				46E1EB66268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift in Sources */,
 				4689108E2681DD1000499F72 /* SavedSiteListViewController.swift in Sources */,
+				4F8BEB8226A56A7D00B67A41 /* UpdateManager.swift in Sources */,
 				81BB4FE326841DBE00BD31B7 /* UIButton+BGColor.swift in Sources */,
 				468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */,
 				468910982681F39C00499F72 /* AddSiteViewController.swift in Sources */,
 				46518B502692578100888F22 /* WebsiteOperations.swift in Sources */,
 				81BB4FE826841DE000BD31B7 /* UIColor+dark_light.swift in Sources */,
 				4617DE8A2685EBE200F19D46 /* AddSiteViewController+Extensions.swift in Sources */,
+				46518B742692B86800888F22 /* SavedSite+CoreDataProperties.swift in Sources */,
 				4689105F2681DAA600499F72 /* Watcher.xcdatamodeld in Sources */,
 				81365713268ABC0D0033CE1F /* UIViewController+Alert.swift in Sources */,
 			);
@@ -523,7 +535,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Watcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,7 +556,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Watcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

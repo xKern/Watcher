@@ -48,11 +48,10 @@ extension AddSiteViewController{
     }
 }
 extension SavedSiteListViewController {
-    func fetchSavedSites() -> [Any]{
-        var sites = [Any]()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSite")
+    func fetchSavedSites() -> [SavedSite]{
+        var sites = [SavedSite]()
         do{
-            sites = try context.fetch(fetchRequest)
+            sites = try context.fetch(SavedSite.fetchRequest())
         }catch let error as NSError{
             print("\(error),\(error.userInfo)")
         }
