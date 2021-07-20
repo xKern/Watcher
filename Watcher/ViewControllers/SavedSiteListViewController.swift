@@ -28,8 +28,8 @@ class SavedSiteListViewController: UIViewController {
     }
     @objc func managedObjectContextObjectsDidChange(_ notification: Notification){
         siteListArray = fetchSavedSites()
-      // createWebSiteRecordsArray()
         DispatchQueue.main.async {
+            self.placeholderLabel.isHidden = !self.siteListArray.isEmpty
             self.siteListTableView.reloadData()
         }
     }
@@ -37,10 +37,11 @@ class SavedSiteListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        siteListArray = fetchSavedSites()
+        placeholderLabel.isHidden = !siteListArray.isEmpty
+        siteListTableView.reloadData()
          timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
-    
-       // reeloadData()
-    }
+        }
     @objc func fire(){
         reeloadData()
     }
@@ -48,11 +49,12 @@ class SavedSiteListViewController: UIViewController {
         timer?.invalidate()
     }
     func reeloadData(){
-        siteListArray = fetchSavedSites()
-       // createWebSiteRecordsArray()
-        placeholderLabel.isHidden = !siteListArray.isEmpty
-        if GlobalUpdateManager.shared.shouldCheckForUpdates(forSites: siteListArray) {
-            checkForUpdates(sites: siteListArray)
+       
+        for (index,site) in siteListArray.enumerated() {
+            site.currentIndex = Int64(index)
+        }
+        if GlobalUpdateManager.shared.shouldCheckForUpdates(forSites: siteListArray) == true {
+            checkForUpdates()
 
         }
     }
@@ -93,12 +95,12 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let site = siteListArray[indexPath.row] as! SavedSite
+        let site = siteListArray[indexPath.row]
      //   let webSiteRecord = webSiteRecordsArray [indexPath.row]
         let siteCell = tableView.dequeueReusableCell(withIdentifier: "SiteCell")  as! SiteListCell
         siteCell.siteAddressLabel.text = site.siteUrl
         siteCell.siteNameLabel.text = site.siteName
-        siteCell.siteChangesLabel.text = site.lastUpdated
+       siteCell.siteChangesLabel.text = "\(arc4random())" //"\(site.lastUpdated)"
         siteCell.siteThumbImageView.image = getSavedImage(named: (site.siteImageName)!)
         
 //        switch webSiteRecord.state {
@@ -119,19 +121,6 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
 }
 
 extension SavedSiteListViewController{
-    func checkForWebSiteUpdates(savedSites:[SavedSite])  {
-        if  GlobalUpdateManager.shared.shouldCheckForUpdates(forSites: savedSites) {
-            
-        }
-    }
-    func createWebSiteRecordsArray(){
-        for objects in siteListArray {
-            let site = objects as! SavedSite
-            let webSiteRecord = WebsiteRecord(name: site.siteName!, url: URL(string: site.siteUrl!)!, image: site.siteImageName!)
-            webSiteRecordsArray.append(webSiteRecord)
-        }
-    }
-    
     func startOperations(for webSiteRecord: WebsiteRecord, at indexPath: IndexPath) {
         switch (webSiteRecord.state) {
         case .new:
@@ -161,7 +150,6 @@ extension SavedSiteListViewController{
         pendingOperations.updatesInProgress[indexPath] = manager
         pendingOperations.updateQueue.addOperation(manager)
     }
-    
     func takeScreenShot(){
         
     }

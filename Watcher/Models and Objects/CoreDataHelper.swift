@@ -16,7 +16,7 @@ let kSiteImage = "siteImageName"
 let kContentLength = "contentLength"
 
 extension AddSiteViewController{
-    func addToCoreData(siteName:String, siteAddress:String, lastUpdated:String, image:String){
+    func addToCoreData(siteName:String, siteAddress:String, lastUpdated:Date, image:String){
         let entity = NSEntityDescription.entity(forEntityName: "SavedSite", in: context)
         
         //Check for duplicates
@@ -29,7 +29,6 @@ extension AddSiteViewController{
                 showAlertwith(title: "Oops!", message: "Cannot add website.URL already added.")
             }
             else{
-                print("item count\(count)")
                 let newSite = NSManagedObject(entity: entity!, insertInto: context)
                 newSite.setValue(siteName, forKey: kSiteName)
                 newSite.setValue(siteAddress, forKey: kSiteAddress)

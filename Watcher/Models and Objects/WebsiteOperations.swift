@@ -7,20 +7,20 @@
 
 import UIKit
 
-enum WebSiteRecordState {
-    case new, started, updated, similar, failed
-}
-
 class WebsiteRecord {
     let name: String
     let url: URL
+    var lastUpdated:Date
+    var indexPath:IndexPath
+    
     var state = WebSiteRecordState.new
     var image: String
-    
-    init(name:String, url:URL, image:String) {
+    init(name:String, url:URL, image:String,lastUpdated:Date, indexPath:IndexPath) {
         self.name = name
         self.url = url
         self.image = image
+        self.lastUpdated = lastUpdated
+        self.indexPath = indexPath
     }
 }
 class PendingOperations {

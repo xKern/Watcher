@@ -10,9 +10,11 @@ import CoreData
 import Foundation
 extension SavedSiteListViewController{
     
-    func checkForUpdates(sites:[SavedSite])  {
+    func checkForUpdates()  {
+        GlobalUpdateManager.shared.isUpdateInProgress = true
         let group = DispatchGroup()
-        for site in sites {
+        for site in siteListArray{
+            
             guard let url =  URL(string: site.siteUrl!) else {
                 continue
             }
@@ -21,23 +23,36 @@ extension SavedSiteListViewController{
             group.enter()
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+                defer {
+                    group.leave()
+                }
                 if let response = response as? HTTPURLResponse {
-                    self.checkForWebSiteUpdates(response: (response.allHeaderFields as NSDictionary), website:site)
+                    self.checkForWebSiteUpdates(response: (response.allHeaderFields as NSDictionary), website: site)
+                }
+                else{
+                    
                 }
             })
             task.resume()
         }
+        
         group.notify(queue: .main, execute: {
+            GlobalUpdateManager.shared.previousUpdationEndTime = Date()
+            GlobalUpdateManager.shared.isUpdateInProgress = false
             self.siteListTableView.reloadData()
         })
     }
     
-    func checkForWebSiteUpdates(response:NSDictionary, website:NSManagedObject){
+    func checkForWebSiteUpdates(response:NSDictionary, website:SavedSite){
         if let contentLength = (response["coNtent-LengTh"] as? String){
             print("content length found")
-            if website.value(forKey: kContentLength) as? String != contentLength {
+            website.lastUpdated = GlobalUpdateManager.shared.previousUpdationEndTime
+            DispatchQueue.main.async {
+                self.siteListTableView.reloadRows(at: [IndexPath(row: Int(website.currentIndex), section: 0)], with: .fade)
+            }
+            if website.contentLength != contentLength {
                 print("content length changed")
-                website.setValue(contentLength, forKey: kContentLength)
+                website.contentLength = contentLength
                 
                 DispatchQueue.main.async {
                     do{
