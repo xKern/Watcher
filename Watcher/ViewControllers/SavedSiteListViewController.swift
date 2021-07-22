@@ -13,8 +13,8 @@ class SavedSiteListViewController: UIViewController {
     @IBOutlet weak var siteListTableView: UITableView!
     var siteListArray=[SavedSite]()
     var placeholderLabel = UILabel()
-    var webSiteRecordsArray: [WebsiteRecord] = []
-    let pendingOperations = PendingOperations()
+//    var webSiteRecordsArray: [WebsiteRecord] = []
+//    let pendingOperations = PendingOperations()
     var timer :Timer?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,61 +96,18 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let site = siteListArray[indexPath.row]
-     //   let webSiteRecord = webSiteRecordsArray [indexPath.row]
         let siteCell = tableView.dequeueReusableCell(withIdentifier: "SiteCell")  as! SiteListCell
         siteCell.siteAddressLabel.text = site.siteUrl
         siteCell.siteNameLabel.text = site.siteName
        siteCell.siteChangesLabel.text = "\(arc4random())" //"\(site.lastUpdated)"
         siteCell.siteThumbImageView.image = getSavedImage(named: (site.siteImageName)!)
-        
-//        switch webSiteRecord.state {
-//        case .failed, .similar, .updated:
-//            siteCell.actIivityIndicator.stopAnimating()
-//        case  .started:
-//            siteCell.actIivityIndicator.startAnimating()
-//        case .new:
-//            siteCell.actIivityIndicator.startAnimating()
-//            startOperations(for: webSiteRecord, at: indexPath)
-            
- //       }
+        if isRowVisible(indexPath: indexPath) && site.isScreenShotUpdated==false{
+         loadSiteAndUpdateScreenShot(for: site, at: indexPath)
+        }
         return siteCell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
-}
-
-extension SavedSiteListViewController{
-    func startOperations(for webSiteRecord: WebsiteRecord, at indexPath: IndexPath) {
-        switch (webSiteRecord.state) {
-        case .new:
-            startDownload(for: webSiteRecord, at: indexPath)
-        case .updated:
-            takeScreenShot()
-        default:
-            NSLog("do nothing..\(webSiteRecord.state)")
-        }
-    }
-    
-    func startDownload(for record: WebsiteRecord, at indexPath: IndexPath) {
-        guard pendingOperations.updatesInProgress[indexPath] == nil else {
-            return
-        }
-        let manager = UpdateManager(record)
-        manager.completionBlock = {
-            if manager.isCancelled {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.pendingOperations.updatesInProgress.removeValue(forKey: indexPath)
-                self.siteListTableView.reloadRows(at: [indexPath], with: .fade)
-            }
-        }
-        pendingOperations.updatesInProgress[indexPath] = manager
-        pendingOperations.updateQueue.addOperation(manager)
-    }
-    func takeScreenShot(){
-        
-    }
+   
 }

@@ -64,4 +64,14 @@ extension UIViewController{
             let context = appDelegate.persistentContainer.viewContext
             return context
         }
+    
+    func saveContext(){
+        DispatchQueue.main.async {
+            do{
+                try self.context.save()
+            }catch let error as NSError{
+                print("Failed to write to core data\(error)")
+            }
+        }
+    }
 }
