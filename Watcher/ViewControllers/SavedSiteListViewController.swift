@@ -13,8 +13,8 @@ class SavedSiteListViewController: UIViewController {
     @IBOutlet weak var siteListTableView: UITableView!
     var siteListArray=[SavedSite]()
     var placeholderLabel = UILabel()
-//    var webSiteRecordsArray: [WebsiteRecord] = []
-//    let pendingOperations = PendingOperations()
+    //    var webSiteRecordsArray: [WebsiteRecord] = []
+    //    let pendingOperations = PendingOperations()
     var timer :Timer?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,22 +40,22 @@ class SavedSiteListViewController: UIViewController {
         siteListArray = fetchSavedSites()
         placeholderLabel.isHidden = !siteListArray.isEmpty
         siteListTableView.reloadData()
-         timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
-        }
+        //  timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
+    }
     @objc func fire(){
         reeloadData()
     }
-     override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
     }
     func reeloadData(){
-       
+        
         for (index,site) in siteListArray.enumerated() {
             site.currentIndex = Int64(index)
         }
         if GlobalUpdateManager.shared.shouldCheckForUpdates(forSites: siteListArray) == true {
             checkForUpdates()
-
+            
         }
     }
     
@@ -99,15 +99,62 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
         let siteCell = tableView.dequeueReusableCell(withIdentifier: "SiteCell")  as! SiteListCell
         siteCell.siteAddressLabel.text = site.siteUrl
         siteCell.siteNameLabel.text = site.siteName
-       siteCell.siteChangesLabel.text = "\(arc4random())" //"\(site.lastUpdated)"
+        siteCell.siteChangesLabel.text = "\(arc4random())" //"\(site.lastUpdated)"
         siteCell.siteThumbImageView.image = getSavedImage(named: (site.siteImageName)!)
         if isRowVisible(indexPath: indexPath) && site.isScreenShotUpdated==false{
-         loadSiteAndUpdateScreenShot(for: site, at: indexPath)
+            loadSiteAndUpdateScreenShot(for: site, at: indexPath)
         }
         return siteCell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
-   
+    func tableView(_ tableView: UITableView,
+                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let savedSite = siteListArray[indexPath.row]
+        let deleteAction = UIContextualAction(style: .destructive,
+                                              title: "Trash") { [weak self] (action, view, completionHandler) in
+            self?.handleDeleteItemForObjectWithID(object: savedSite)
+            completionHandler(true)
+            
+        }
+        deleteAction.backgroundColor = .black
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { action, view, completionHandler in
+            self.editItemWithObjectId(object: savedSite)
+        }
+        editAction.backgroundColor = .black
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        return configuration
+    }
+    
+    func handleDeleteItemForObjectWithID(object:SavedSite){
+        showAlertwith(title: "Attention!", message: "Do you really want to delete?") { alertAction in
+            switch alertAction{
+            case .ok:
+                self.siteListArray = self.siteListArray.filter({$0 !== object})
+                self.context.delete(object)
+                self.saveContext()
+                self.siteListTableView.reloadData()
+            case .cancel:
+                break
+            }
+        }
+    }
+    func editItemWithObjectId(object:SavedSite){
+        showAlertWithTextField(title: "", message: "Please add a new title to save this website."){ alertAction, title in
+            switch alertAction{
+            case .ok:
+                object.siteName = title
+                self.saveContext()
+                self.siteListTableView.reloadData()
+            case .cancel:
+                break
+            }
+        }
+    }
 }

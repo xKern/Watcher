@@ -57,7 +57,6 @@ extension SavedSiteListViewController:WKNavigationDelegate{
             if website.contentLength != contentLength {
                 print("content length changed")
                 website.contentLength = contentLength
-                
                 saveContext()
                 
             }
@@ -70,7 +69,7 @@ extension SavedSiteListViewController:WKNavigationDelegate{
                 saveContext()
                 website.isScreenShotUpdated = false
                 
-                let cellToRefresh = getCellWithId(id: website.uniqueId!) 
+                let cellToRefresh = getCellWithId(id: website.uniqueId!)
                 let indexPath = siteListTableView.indexPath(for: cellToRefresh!)
                 if isRowVisible(indexPath: indexPath!) == true{
                     DispatchQueue.main.async {

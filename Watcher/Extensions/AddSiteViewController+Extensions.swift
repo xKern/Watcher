@@ -8,32 +8,7 @@
 import Foundation
 import UIKit
 import WebKit
-extension AddSiteViewController{
-    func showAlertWithTextField(title:String, desctription:String){
-        let ac = UIAlertController(title: "Save to Watch List?", message: "Please add a title to save this website.", preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Add to watch list.", style: .default) { [unowned ac] _ in
-            let titlee = ac.textFields![0]
-            
-            self.saveSite(siteName:titlee.text!)
-        }
-        let cancelAction =  UIAlertAction(title: "Not Now", style: .cancel) {  _ in}
-        ac.addAction(submitAction)
-        ac.addAction(cancelAction)
-        ac.addTextField(configurationHandler: {(txtFld:UITextField!) in
-            txtFld.addTarget(self, action: #selector(self.textChanged(sender:)), for: .editingChanged)
-        })
-        (ac.actions[0] as UIAlertAction).isEnabled=false
-        present(ac, animated: true)
-    }
-    @objc func textChanged(sender : UITextField){
-        var responder:UIResponder = sender
-        while !(responder is UIAlertController) {
-            responder = responder.next!
-        }
-        let alert = responder as! UIAlertController
-        let r = sender.text?.notEmptyAfterTrimmingWhiteSpaces()
-        alert.actions[0].isEnabled = r!
-    } 
+extension AddSiteViewController: WKNavigationDelegate, WKUIDelegate{
     func saveSite(siteName:String){
         let configuration = WKSnapshotConfiguration()
         configuration.rect = CGRect(origin: .zero, size: webView.scrollView.contentSize)
@@ -52,5 +27,46 @@ extension AddSiteViewController{
         }
         
     }
+    // MARK: Webview Delegates
+        func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+            print("*****didcommit called****")
+            canAddURL = true
+        }
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            print("*****did finish called****")
+        }
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            print("*****did fail called****/n\(error.localizedDescription)")
+        }
+        func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+           
+            print("*****did fail prov. navigation called****/n\(error.localizedDescription)")
+        }
+        func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+            print("*****did terminate called****")
+        }
+        func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
+        {
+         //   let response = navigationResponse.response as? HTTPURLResponse
+            decisionHandler(.allow)
+            // print("***LastModified****\(response?.allHeaderFields["Last-Modified"])")
+         //   print("***LastModified****\(response?.allHeaderFields)")
+    }
+    
+    //MARK: TextField Delegates & Actions
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            canAddURL = false
+            customClearButton.isHidden = false
+            
+        }
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            customClearButton.isHidden = true
+        }
+        @IBAction func onReturn(){
+            searchTextField.resignFirstResponder()
+            // TO DO : Add validation
+            loadWebView(url:URL(string:searchTextField.text!)!)
+        }
+    
 }
 

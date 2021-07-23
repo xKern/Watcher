@@ -7,13 +7,13 @@
 
 import UIKit
 import WebKit
-class AddSiteViewController: UIViewController {
+class AddSiteViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchFieldBg: UIView!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var customClearButton: UIButton!
-    private var canAddURL = false{
+     var canAddURL = false{
         didSet{
             addButtonView.isHidden = !canAddURL
         }
@@ -34,8 +34,8 @@ class AddSiteViewController: UIViewController {
         searchTextField.keyboardType = .URL
         searchTextField.autocorrectionType = .no
         searchFieldBg.layer.cornerRadius = 16
-        searchTextField.text = "https://www.who.int"
-        let url = URL(string: "https://www.who.int")!
+        searchTextField.text = "https://en.wikipedia.org/wiki/Wikipedia:Administrator_intervention_against_vandalism"
+        let url = URL(string: "https://en.wikipedia.org/wiki/Wikipedia:Administrator_intervention_against_vandalism")!
         loadWebView(url: url)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -103,7 +103,14 @@ class AddSiteViewController: UIViewController {
     }
     
     @IBAction func saveSiteButtonPressed(_ sender: Any) {
-        showAlertWithTextField(title: "abc", desctription: "def")
+        showAlertWithTextField(title: "Save to Watch List?", message:  "Please add a title to save this website."){alertAction, name in
+            switch alertAction{
+            case .ok:
+                self.saveSite(siteName:name)
+            case .cancel:
+                break
+            }
+        }
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {
@@ -117,50 +124,9 @@ class AddSiteViewController: UIViewController {
     }
 }
 
-//MARK: TextField Delegates & Actions
-extension AddSiteViewController:UITextFieldDelegate{
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        canAddURL = false
-        customClearButton.isHidden = false
-        
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        customClearButton.isHidden = true
-    }
-    @IBAction func onReturn(){
-        searchTextField.resignFirstResponder()
-        // TO DO : Add validation
-        loadWebView(url:URL(string:searchTextField.text!)!)
-    }
-}
 
-// MARK: Webview Delegates
-extension AddSiteViewController:WKNavigationDelegate, WKUIDelegate{
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        print("*****didcommit called****")
-        canAddURL = true
-    }
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("*****did finish called****")
-    }
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("*****did fail called****/n\(error.localizedDescription)")
-    }
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-       
-        print("*****did fail prov. navigation called****/n\(error.localizedDescription)")
-    }
-    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-        print("*****did terminate called****")
-    }
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
-    {
-        let response = navigationResponse.response as? HTTPURLResponse
-        decisionHandler(.allow)
-        // print("***LastModified****\(response?.allHeaderFields["Last-Modified"])")
-     //   print("***LastModified****\(response?.allHeaderFields)")
-    }
-}
+
+
 //MARK: Ignore
 /*
 extension AddSiteViewController{
