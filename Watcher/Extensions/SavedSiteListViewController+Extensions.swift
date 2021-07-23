@@ -69,9 +69,14 @@ extension SavedSiteListViewController:WKNavigationDelegate{
                 website.lastUpdated = lastUpdated as? Date
                 saveContext()
                 website.isScreenShotUpdated = false
-                DispatchQueue.main.async {
-                    self.siteListTableView.reloadRows(at: [IndexPath(row: Int(website.currentIndex), section: 0)], with: .fade)
-                }
+                
+                let cellToRefresh = getCellWithId(id: website.uniqueId!) 
+                let indexPath = siteListTableView.indexPath(for: cellToRefresh!)
+                if isRowVisible(indexPath: indexPath!) == true{
+                    DispatchQueue.main.async {
+                        self.siteListTableView.reloadRows(at: [IndexPath(row: Int(website.currentIndex), section: 0)], with: .fade)
+                    }
+               }
             }
         }
         else{
@@ -79,13 +84,12 @@ extension SavedSiteListViewController:WKNavigationDelegate{
         }
     }
     func createWebView(site:SavedSite){
-        print("dgasfjhdjjha\(site.siteUrl!)")
         let webView = WKWebView()
         webView.navigationDelegate = self
         let url = URL(string: site.siteUrl!)
+        webView.accessibilityIdentifier = site.uniqueId
         webView.load(URLRequest(url: url!))
         webView.frame = self.view.bounds
-        webView.tag = Int(site.currentIndex)
         self.view.insertSubview(webView, belowSubview: self.siteListTableView)
     }
     func isRowVisible(indexPath:IndexPath) -> Bool {
@@ -95,19 +99,17 @@ extension SavedSiteListViewController:WKNavigationDelegate{
         return false
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.saveSite(siteAddress:webView.url!.absoluteString, webView: webView) { success in
+        self.saveScreenShot( webView: webView) { success in
             if success{
                 webView.removeFromSuperview()
             }
         }
-        print("*****did finish called****")
     }
     
-    func saveSite(siteAddress:String, webView:WKWebView, finished: @escaping (_ success:Bool) -> Void){
-        print("dsgjfasaf.....\(siteListArray[0].siteUrl)")
-        if let index = siteListArray.firstIndex(where: { $0.siteUrl! + "/" == siteAddress }) {
+    func saveScreenShot(webView:WKWebView, finished: @escaping (_ success:Bool) -> Void){
+        if let index = siteListArray.firstIndex(where: { $0.uniqueId!  == webView.accessibilityIdentifier }) {
             let site = siteListArray[index]
-           
+            
             let configuration = WKSnapshotConfiguration()
             configuration.rect = CGRect(origin: .zero, size: webView.scrollView.contentSize)
             webView.takeSnapshot(with:nil) { (image, error) in
@@ -125,13 +127,26 @@ extension SavedSiteListViewController:WKNavigationDelegate{
             }
             
         } else {
-            print("Object deleted.....\(siteAddress)")
+            print("Object not found.....)")
             finished(true)
         }
     }
     
     func loadSiteAndUpdateScreenShot(for record: SavedSite, at indexPath: IndexPath) {
         createWebView(site: record)
+    }
+    func getCellWithId(id: String) -> SiteListCell? {
+      
+        for cell in siteListTableView.visibleCells {
+            let siteCell = cell as! SiteListCell
+            if siteCell.cellID == id{
+                return siteCell
+            }
+            else{
+                return nil
+            }
+        }
+        return  SiteListCell()
     }
 }
 

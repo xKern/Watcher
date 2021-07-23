@@ -18,6 +18,7 @@ class SiteListCell: UITableViewCell {
     @IBOutlet weak var siteChangesLabel: UILabel!
     @IBOutlet weak var siteAddressLabel: UILabel!
     @IBOutlet weak var siteNameLabel: UILabel!
+    var cellID:String?
     override func awakeFromNib() {
         super.awakeFromNib()
         self.cellBgView.layer.cornerRadius = 15.0

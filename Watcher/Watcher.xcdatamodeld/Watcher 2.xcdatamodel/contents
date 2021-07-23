@@ -8,8 +8,9 @@
         <attribute name="siteImageName" optional="YES" attributeType="String"/>
         <attribute name="siteName" optional="YES" attributeType="String"/>
         <attribute name="siteUrl" optional="YES" attributeType="String"/>
+        <attribute name="uniqueId" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="SavedSite" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="SavedSite" positionX="-63" positionY="-18" width="128" height="149"/>
     </elements>
 </model>

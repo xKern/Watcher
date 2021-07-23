@@ -14,9 +14,9 @@ let kSiteAddress = "siteUrl"
 let kSiteLastUpdated = "lastUpdated"
 let kSiteImage = "siteImageName"
 let kContentLength = "contentLength"
-
+let kUniqueId = "uniqueId"
 extension AddSiteViewController{
-    func addToCoreData(siteName:String, siteAddress:String, lastUpdated:Date, image:String){
+    func addToCoreData(siteName:String, siteAddress:String, lastUpdated:Date, image:String, uniqueID:String){
         let entity = NSEntityDescription.entity(forEntityName: "SavedSite", in: context)
         
         //Check for duplicates
@@ -34,6 +34,7 @@ extension AddSiteViewController{
                 newSite.setValue(siteAddress, forKey: kSiteAddress)
                 newSite.setValue(lastUpdated, forKey: kSiteLastUpdated)
                 newSite.setValue(image, forKey: kSiteImage)
+                newSite.setValue(uniqueID, forKey: kUniqueId)
                 do{
                     try context.save()
                     showAlertwith(title: "Voila!", message: "Website added to watch list.")

@@ -43,7 +43,7 @@ extension AddSiteViewController{
                 let imageFileName = "IMG_\(Int(Date().timeIntervalSince1970))"
                 if self.saveImage(image: image, filename: imageFileName){
                     print("saved image to file")
-                    self.addToCoreData(siteName: siteName, siteAddress: self.searchTextField.text!, lastUpdated: Date(), image: imageFileName)
+                    self.addToCoreData(siteName: siteName, siteAddress: self.searchTextField.text!, lastUpdated: Date(), image: imageFileName,uniqueID: UUID().uuidString)
                 }
                 else{
                     print("couldn't save image to file")
