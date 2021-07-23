@@ -40,15 +40,16 @@ class SavedSiteListViewController: UIViewController {
         siteListArray = fetchSavedSites()
         DispatchQueue.main.async {
             self.placeholderLabel.isHidden = !self.siteListArray.isEmpty
+            self.searchController.searchBar.isHidden = self.siteListArray.isEmpty
             self.siteListTableView.reloadData()
         }
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         siteListArray = fetchSavedSites()
         placeholderLabel.isHidden = !siteListArray.isEmpty
+        searchController.searchBar.isHidden = self.siteListArray.isEmpty
         siteListTableView.reloadData()
         //  timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
     }
@@ -74,13 +75,10 @@ class SavedSiteListViewController: UIViewController {
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.barTintColor = .black
         searchController.searchBar.tintColor = .white
+        self.navigationItem.searchController = searchController
+       definesPresentationContext = true
         let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
         textField?.textColor = .white
-      // siteListTableView.tableHeaderView = searchController.searchBar
-       
-         self.navigationItem.searchController = searchController
-        definesPresentationContext = true
-
     }
     func configurePlaceHolderText(){
         siteListTableView.addSubview(placeholderLabel)
