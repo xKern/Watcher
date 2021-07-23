@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import WebKit
-extension AddSiteViewController: WKNavigationDelegate, WKUIDelegate{
+extension AddSiteViewController: WKNavigationDelegate, WKUIDelegate,UITextFieldDelegate, UIScrollViewDelegate{
     func saveSite(siteName:String){
         let configuration = WKSnapshotConfiguration()
         configuration.rect = CGRect(origin: .zero, size: webView.scrollView.contentSize)
@@ -53,6 +53,23 @@ extension AddSiteViewController: WKNavigationDelegate, WKUIDelegate{
          //   print("***LastModified****\(response?.allHeaderFields)")
     }
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+      if(velocity.y>0) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+            self.searchBgHeight.constant = 0.0
+            
+        }, completion: nil)
+
+      } else {
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            self.searchBgHeight.constant = 35.0
+          }, completion: nil)
+        }
+     }
+    
     //MARK: TextField Delegates & Actions
         func textFieldDidBeginEditing(_ textField: UITextField) {
             canAddURL = false
@@ -67,6 +84,8 @@ extension AddSiteViewController: WKNavigationDelegate, WKUIDelegate{
             // TO DO : Add validation
             loadWebView(url:URL(string:searchTextField.text!)!)
         }
+    
+   
     
 }
 

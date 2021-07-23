@@ -228,6 +228,7 @@
                     </view>
                     <connections>
                         <outlet property="customClearButton" destination="NQS-1n-kUL" id="5yr-U0-kBt"/>
+                        <outlet property="searchBgHeight" destination="s4K-pV-fwD" id="D8e-7g-z4P"/>
                         <outlet property="searchFieldBg" destination="tPC-bg-uax" id="6KL-hb-96i"/>
                         <outlet property="searchTextField" destination="BO5-gt-DDA" id="1yc-bY-PFn"/>
                         <outlet property="webView" destination="Ppz-j3-jew" id="jkb-ZJ-ySK"/>
@@ -235,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oar-EH-78D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-986.95652173913049" y="-368.30357142857139"/>
+            <point key="canvasLocation" x="-1248" y="-236"/>
         </scene>
     </scenes>
     <resources>

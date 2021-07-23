@@ -7,8 +7,9 @@
 
 import UIKit
 import WebKit
-class AddSiteViewController: UIViewController, UITextFieldDelegate {
+class AddSiteViewController: UIViewController {
     
+    @IBOutlet weak var searchBgHeight: NSLayoutConstraint!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchFieldBg: UIView!
     @IBOutlet weak var webView: WKWebView!
@@ -42,6 +43,7 @@ class AddSiteViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(true)
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.scrollView.delegate = self
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(onReturn), for: .editingDidEndOnExit)
         if searchTextField.isEditing {
@@ -57,6 +59,7 @@ class AddSiteViewController: UIViewController, UITextFieldDelegate {
         let presentingVC = self.presentingViewController as!  UINavigationController
         let vc = presentingVC.viewControllers.first as! SavedSiteListViewController
         vc.reeloadData()
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func configureNavBarItems(){

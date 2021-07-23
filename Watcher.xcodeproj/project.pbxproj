@@ -26,7 +26,7 @@
 		46E1EB66268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E1EB65268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift */; };
 		4F1CA52626AA924D00D632D4 /* SavedSite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CA52526AA924D00D632D4 /* SavedSite+CoreDataProperties.swift */; };
 		4F1CA52826AA925B00D632D4 /* SavedSite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CA52726AA925B00D632D4 /* SavedSite+CoreDataClass.swift */; };
-		4F1CA52A26AAD35000D632D4 /* AddSiteViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CA52926AAD35000D632D4 /* AddSiteViewController+Search.swift */; };
+		4F1CA52A26AAD35000D632D4 /* SavedSiteViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CA52926AAD35000D632D4 /* SavedSiteViewController+Search.swift */; };
 		4F8BEB8226A56A7D00B67A41 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BEB8126A56A7D00B67A41 /* UpdateManager.swift */; };
 		81365713268ABC0D0033CE1F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81365712268ABC0D0033CE1F /* UIViewController+Alert.swift */; };
 		81BB4FDE26841D4C00BD31B7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4FDD26841D4B00BD31B7 /* RoundedButton.swift */; };
@@ -77,7 +77,7 @@
 		46E1EB65268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedSiteListViewController+Extensions.swift"; sourceTree = "<group>"; };
 		4F1CA52526AA924D00D632D4 /* SavedSite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedSite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4F1CA52726AA925B00D632D4 /* SavedSite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedSite+CoreDataClass.swift"; path = "../../Desktop/SavedSite+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4F1CA52926AAD35000D632D4 /* AddSiteViewController+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSiteViewController+Search.swift"; sourceTree = "<group>"; };
+		4F1CA52926AAD35000D632D4 /* SavedSiteViewController+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedSiteViewController+Search.swift"; sourceTree = "<group>"; };
 		4F8BEB8126A56A7D00B67A41 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		4F8BEB8326A6899300B67A41 /* Watcher 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Watcher 2.xcdatamodel"; sourceTree = "<group>"; };
 		81365712268ABC0D0033CE1F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 			children = (
 				4694982A2682D67C000B2273 /* UIViewController+Snapshot.swift */,
 				4617DE892685EBE200F19D46 /* AddSiteViewController+Extensions.swift */,
-				4F1CA52926AAD35000D632D4 /* AddSiteViewController+Search.swift */,
+				4F1CA52926AAD35000D632D4 /* SavedSiteViewController+Search.swift */,
 				46E1EB65268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift */,
 				4694A65A2685F33100C5EB55 /* String+Trim.swift */,
 				81BB4FE726841DE000BD31B7 /* UIColor+dark_light.swift */,
@@ -351,7 +351,7 @@
 				81BB4FDE26841D4C00BD31B7 /* RoundedButton.swift in Sources */,
 				46E1EB66268C778B00F3C165 /* SavedSiteListViewController+Extensions.swift in Sources */,
 				4689108E2681DD1000499F72 /* SavedSiteListViewController.swift in Sources */,
-				4F1CA52A26AAD35000D632D4 /* AddSiteViewController+Search.swift in Sources */,
+				4F1CA52A26AAD35000D632D4 /* SavedSiteViewController+Search.swift in Sources */,
 				4F8BEB8226A56A7D00B67A41 /* UpdateManager.swift in Sources */,
 				81BB4FE326841DBE00BD31B7 /* UIButton+BGColor.swift in Sources */,
 				468910A326820BCD00499F72 /* CoreDataHelper.swift in Sources */,
