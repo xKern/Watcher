@@ -34,8 +34,8 @@ class AddSiteViewController: UIViewController, UITextFieldDelegate {
         searchTextField.keyboardType = .URL
         searchTextField.autocorrectionType = .no
         searchFieldBg.layer.cornerRadius = 16
-        searchTextField.text = "https://en.wikipedia.org/wiki/Wikipedia:Administrator_intervention_against_vandalism"
-        let url = URL(string: "https://en.wikipedia.org/wiki/Wikipedia:Administrator_intervention_against_vandalism")!
+        searchTextField.text = "https://www.wallpaper.com/gallery"
+        let url = URL(string: "https://www.wallpaper.com/gallery")!
         loadWebView(url: url)
     }
     override func viewWillAppear(_ animated: Bool) {

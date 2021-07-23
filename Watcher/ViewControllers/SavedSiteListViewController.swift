@@ -13,6 +13,15 @@ class SavedSiteListViewController: UIViewController {
     @IBOutlet weak var siteListTableView: UITableView!
     var siteListArray=[SavedSite]()
     var placeholderLabel = UILabel()
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredSiteList: [SavedSite] = []
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+
     //    var webSiteRecordsArray: [WebsiteRecord] = []
     //    let pendingOperations = PendingOperations()
     var timer :Timer?
@@ -22,6 +31,7 @@ class SavedSiteListViewController: UIViewController {
         siteListTableView.delegate = self
         siteListTableView.dataSource = self
         configurePlaceHolderText()
+        configureSearchController()
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(managedObjectContextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: context)
         
@@ -58,7 +68,18 @@ class SavedSiteListViewController: UIViewController {
             
         }
     }
-    
+    func configureSearchController(){
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.barTintColor = .black
+        searchController.searchBar.tintColor = .white
+        let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        textField?.textColor = .white
+        siteListTableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
+
+    }
     func configurePlaceHolderText(){
         siteListTableView.addSubview(placeholderLabel)
         placeholderLabel.textColor = UIColor.white
@@ -91,11 +112,20 @@ class SavedSiteListViewController: UIViewController {
 }
 extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredSiteList.count
+          }
         return siteListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let site = siteListArray[indexPath.row]
+        let site:SavedSite
+        if isFiltering {
+             site = filteredSiteList[indexPath.row]
+        }
+        else{
+             site = siteListArray[indexPath.row]
+        }
         let siteCell = tableView.dequeueReusableCell(withIdentifier: "SiteCell")  as! SiteListCell
         siteCell.siteAddressLabel.text = site.siteUrl
         siteCell.siteNameLabel.text = site.siteName
@@ -116,7 +146,13 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let savedSite = siteListArray[indexPath.row]
+        let savedSite:SavedSite
+        if isFiltering {
+            savedSite = filteredSiteList[indexPath.row]
+        }
+        else{
+            savedSite = siteListArray[indexPath.row]
+        }
         let deleteAction = UIContextualAction(style: .destructive,
                                               title: "Trash") { [weak self] (action, view, completionHandler) in
             self?.handleDeleteItemForObjectWithID(object: savedSite)
