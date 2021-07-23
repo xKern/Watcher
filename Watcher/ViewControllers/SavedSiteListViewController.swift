@@ -76,7 +76,9 @@ class SavedSiteListViewController: UIViewController {
         searchController.searchBar.tintColor = .white
         let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
         textField?.textColor = .white
-        siteListTableView.tableHeaderView = searchController.searchBar
+      // siteListTableView.tableHeaderView = searchController.searchBar
+       
+         self.navigationItem.searchController = searchController
         definesPresentationContext = true
 
     }

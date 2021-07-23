@@ -34,8 +34,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z2m-YN-DUv">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SiteCell" rowHeight="131" id="b0Z-51-pGv" customClass="SiteListCell" customModule="Watcher" customModuleProvider="target">
@@ -135,10 +136,10 @@
                         <viewLayoutGuide key="safeArea" id="24u-ON-czG"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Z2m-YN-DUv" firstAttribute="trailing" secondItem="24u-ON-czG" secondAttribute="trailing" id="8wo-Bc-obk"/>
-                            <constraint firstItem="Z2m-YN-DUv" firstAttribute="leading" secondItem="24u-ON-czG" secondAttribute="leading" id="BAD-2r-IeP"/>
-                            <constraint firstItem="Z2m-YN-DUv" firstAttribute="top" secondItem="24u-ON-czG" secondAttribute="top" id="cVL-MB-rOj"/>
-                            <constraint firstAttribute="bottom" secondItem="Z2m-YN-DUv" secondAttribute="bottom" id="dWz-yE-g0f"/>
+                            <constraint firstItem="Z2m-YN-DUv" firstAttribute="trailing" secondItem="24u-ON-czG" secondAttribute="trailing" id="90Z-jo-tbx"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Z2m-YN-DUv" secondAttribute="bottom" id="NDZ-7P-esW"/>
+                            <constraint firstItem="Z2m-YN-DUv" firstAttribute="leading" secondItem="24u-ON-czG" secondAttribute="leading" id="UNl-B0-Dx5"/>
+                            <constraint firstItem="Z2m-YN-DUv" firstAttribute="top" secondItem="24u-ON-czG" secondAttribute="top" id="hCF-6f-OAR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Watcher" id="Q8f-LN-8It"/>

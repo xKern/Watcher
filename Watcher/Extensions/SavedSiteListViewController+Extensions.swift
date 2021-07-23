@@ -88,8 +88,13 @@ extension SavedSiteListViewController:WKNavigationDelegate{
         let url = URL(string: site.siteUrl!)
         webView.accessibilityIdentifier = site.uniqueId
         webView.load(URLRequest(url: url!))
-        webView.frame = self.view.bounds
+        webView.translatesAutoresizingMaskIntoConstraints = false
         self.view.insertSubview(webView, belowSubview: self.siteListTableView)
+        webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
+        webView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        webView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
     }
     func isRowVisible(indexPath:IndexPath) -> Bool {
         if siteListTableView.indexPathsForVisibleRows!.contains(indexPath) {
