@@ -16,12 +16,19 @@ class SavedSiteListViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var filteredSiteList: [SavedSite] = []
     var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
+        return searchController.searchBar.text?.isEmpty ?? true
     }
-    var isFiltering: Bool {
-      return searchController.isActive && !isSearchBarEmpty
+    var isReadyToCheckForUpdates : Bool{
+        if siteListTableView.isEditing == true {
+            return false}
+        else{
+            return true
+        }
     }
-
+    var isFiltering : Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
     //    var webSiteRecordsArray: [WebsiteRecord] = []
     //    let pendingOperations = PendingOperations()
     var timer :Timer?
@@ -51,10 +58,12 @@ class SavedSiteListViewController: UIViewController {
         placeholderLabel.isHidden = !siteListArray.isEmpty
         searchController.searchBar.isHidden = self.siteListArray.isEmpty
         siteListTableView.reloadData()
-        //  timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
     }
     @objc func fire(){
-        reeloadData()
+        if(isReadyToCheckForUpdates == true){
+            reeloadData()
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
@@ -76,7 +85,7 @@ class SavedSiteListViewController: UIViewController {
         searchController.searchBar.barTintColor = .black
         searchController.searchBar.tintColor = .white
         self.navigationItem.searchController = searchController
-       definesPresentationContext = true
+        definesPresentationContext = true
         let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
         textField?.textColor = .white
     }
@@ -114,17 +123,17 @@ extension SavedSiteListViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredSiteList.count
-          }
+        }
         return siteListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let site:SavedSite
         if isFiltering {
-             site = filteredSiteList[indexPath.row]
+            site = filteredSiteList[indexPath.row]
         }
         else{
-             site = siteListArray[indexPath.row]
+            site = siteListArray[indexPath.row]
         }
         let siteCell = tableView.dequeueReusableCell(withIdentifier: "SiteCell")  as! SiteListCell
         siteCell.siteAddressLabel.text = site.siteUrl

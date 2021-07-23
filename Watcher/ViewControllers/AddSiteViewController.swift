@@ -19,7 +19,7 @@ class AddSiteViewController: UIViewController {
             addButtonView.isHidden = !canAddURL
         }
     }
-    private var addButtonView = {
+     var addButtonView = {
         () -> UIVisualEffectView in
         let effect = UIBlurEffect(style: .dark)
         let view = UIVisualEffectView(effect: effect)

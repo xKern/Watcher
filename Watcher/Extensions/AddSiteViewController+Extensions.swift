@@ -56,20 +56,31 @@ extension AddSiteViewController: WKNavigationDelegate, WKUIDelegate,UITextFieldD
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
       if(velocity.y>0) {
-        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-            self.navigationController?.setNavigationBarHidden(true, animated: false)
-            self.searchBgHeight.constant = 0.0
-            
-        }, completion: nil)
-
+        hideUIElements()
       } else {
-        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-            self.navigationController?.setNavigationBarHidden(false, animated: false)
-            self.searchBgHeight.constant = 35.0
-          }, completion: nil)
+showUIElements()
         }
      }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+            self.addButtonView.alpha = 1.0
+          }, completion: nil)
+    }
     
+    func hideUIElements(){
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.searchBgHeight.constant = 0.0
+            self.addButtonView.alpha = 0.0
+        }, completion: nil)
+    }
+    func showUIElements(){
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.searchBgHeight.constant = 35.0
+            self.addButtonView.alpha = 1.0
+          }, completion: nil)
+    }
     //MARK: TextField Delegates & Actions
         func textFieldDidBeginEditing(_ textField: UITextField) {
             canAddURL = false
